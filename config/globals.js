@@ -1,0 +1,1 @@
+global.idVendedor = -1;
