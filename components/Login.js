@@ -64,7 +64,7 @@ export default class DetallesPedido extends React.PureComponent {
 
         let Clave = this.state.passVendedor;
 
-        if (Clave == "") Clave = "carrozzo10";
+        //if (Clave == "") Clave = "carrozzo10";
 
         Config.Consultar('Login/' + Clave, (resp) => {
             resp.then(res => res.json())
