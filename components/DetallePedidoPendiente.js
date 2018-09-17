@@ -1,10 +1,9 @@
 import React from 'react';
-import { View, Dimensions, StyleSheet, TouchableOpacity, PixelRatio } from 'react-native';
+import { View, Dimensions, StyleSheet, PixelRatio } from 'react-native';
 import MenuHeaderButton from './MenuHeaderButton';
 import HeaderNav from './HeaderNav.js';
-import { Container, Text, Content, List, ListItem, Spinner, Icon, Header, Item, Input, Picker } from 'native-base';
+import { Container, Text, Content, List, Spinner, Header } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
-import DatePicker from 'react-native-datepicker';
 import Config from '../config/config.js';
 import _ from 'lodash';
 import moment from 'moment';
@@ -18,16 +17,16 @@ const LabelEncabezado = ({ texto, customStyles }) => (
 )
 
 const BloqueEncabezado = ({ content, size, style }) => (
-    <Col size={size} style={[{ backgroundColor: Config.bgColorSecundario, justifyContent: 'center', paddingHorizontal: 15, paddingVertical: 10 }, style]}>
+    <Col size={size} style={[{ backgroundColor: Config.bgColorSecundario, justifyContent: 'center', alignItems: 'flex-end', paddingHorizontal: 15, paddingVertical: 10 }, style]}>
         {content}
     </Col>
 )
 
-export default class ListadoPedidos extends React.Component {
+export default class DetallePedidoPendiente extends React.Component {
 
     static navigationOptions = ({ navigation }) => {
         return {
-            headerTitle: <HeaderNav section="Hojas de Ruta" />,
+            headerTitle: <HeaderNav section="Detalle" />,
             headerRight: <MenuHeaderButton navigation={navigation} />
         };
     };
@@ -46,11 +45,13 @@ export default class ListadoPedidos extends React.Component {
         textFilter: '',
         itemsFiltrados: [],
         primeraVez: true,
-        date: moment().format('DD-MM-YYYY')
+        date: moment().format('DD-MM-YYYY'),
+        pedido: this.props.navigation.getParam('Pedido', -1),
+        hojaRuta: this.props.navigation.getParam('HojaRuta', -1)
     }
 
     async componentDidMount() {
-        this.ConsultarAniosPosibles();
+        //this.ConsultarAniosPosibles();
         this._ReGenerarItems();
         this.setState({ heightDevice: Dimensions.get('screen').height });
     }
@@ -70,15 +71,15 @@ export default class ListadoPedidos extends React.Component {
         if (this.state.idVendedor <= 0) return;
 
         this.setState({ refrescando: true, primeraVez: true });
-
-        return Config.Consultar(`Pedidos/${global.idVendedor}/${this.state.date}`, (resp) => {
+        
+        return Config.Consultar(`Pedidos/Pendientes/Detalles/${this.state.pedido}`, (resp) => {
             resp.then(response => response.json())
-                .then(responseJson => {
-
+            .then(responseJson => {
+                
                     let _datos = [];
-
+                
                     const { error, resultados } = responseJson;
-
+                
                     if (resultados.length > 0) {
                         _datos = resultados;
                     }
@@ -120,141 +121,126 @@ export default class ListadoPedidos extends React.Component {
         this.setState({ itemsFiltrados: _itemsFiltrados });
     }
 
-    handleOnPressDetalles = (HojaRuta, Pedido) => this.props.navigation.navigate('DetallesPedido', { HojaRuta: HojaRuta, Pedido: Pedido });
+    handleOnPressDetalles = (parameters) => this.props.navigation.navigate('Detalles', parameters);
 
-    RenderPedido = ({ Pedido, HojaRuta, Cliente, Razon, CantItems }) => (
+    RenderPedido = ({ Producto, DescProducto, Cantidad, Facturado }) => (
 
-        <Row key={Pedido} onPress={() => this.handleOnPressDetalles(HojaRuta, Pedido)} style={{ borderBottomColor: '#aaa', borderBottomWidth: 0.5 }} >
+        <Row key={Producto}>
             <BloqueEncabezado
-                size={2}
+                size={3}
                 content={
-                    <LabelEncabezado texto={Pedido} customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#000' }} />
+                    <LabelEncabezado texto={Producto} customStyles={{ fontSize: 10 / PixelRatio.getFontScale(), color: '#000' }} />
                 } style={styles.RenglonPedidos} />
             <BloqueEncabezado
-                size={2}
+                size={3}
                 content={
-                    <LabelEncabezado texto={Cliente} customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#000' }} />
-                } style={styles.RenglonPedidos} />
-            <BloqueEncabezado
-                size={6}
-                content={
-                    <LabelEncabezado texto={Razon} customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#000' }} />
+                    <LabelEncabezado texto={DescProducto} customStyles={{ fontSize: 10 / PixelRatio.getFontScale(), color: '#000' }} />
                 } style={styles.RenglonPedidos2} />
             <BloqueEncabezado
                 size={2}
                 content={
-                    <LabelEncabezado texto={CantItems} customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#000' }} />
+                    <LabelEncabezado texto={parseFloat(Cantidad).toFixed(2)} customStyles={{ fontSize: 10 / PixelRatio.getFontScale(), color: '#000' }} />
+                } style={styles.RenglonPedidos} />
+            <BloqueEncabezado
+                size={2}
+                content={
+                    <LabelEncabezado texto={parseFloat(Facturado).toFixed(2)} customStyles={{ fontSize: 10 / PixelRatio.getFontScale(), color: '#000' }} />
+                } style={styles.RenglonPedidos} />
+            <BloqueEncabezado
+                size={2}
+                content={
+                    <LabelEncabezado texto={parseFloat(Cantidad - Facturado).toFixed(2)} customStyles={{ fontSize: 10 / PixelRatio.getFontScale(), color: '#000' }} />
                 } style={styles.RenglonPedidos} />
         </Row>
     )
 
-    RenderHojaRuta = item => (
-        <ListItem key={item.Cliente} style={{ marginLeft: 0, paddingHorizontal: 15, borderBottomColor: '#aaa', borderBottomWidth: 2 }}>
+    RenderDetalles = ({ Pedido, Fecha, Cliente, Razon, Productos }) => (
+        <Grid>
             <Col>
-                <Row>
+                <Row style={{ borderBottomColor: '#ccc', borderBottomWidth: 0.5, marginTop: 5 }}>
                     <BloqueEncabezado
-                        size={4}
+                        size={2}
                         content={
-                            <LabelEncabezado texto='Hoja de Ruta' />
-                        } />
+                            <LabelEncabezado texto='Nro' />
+                        } style={{ alignItems: 'center' }} />
                     <BloqueEncabezado
-                        size={4}
+                        size={3}
                         content={
-                            <LabelEncabezado texto={item.HojaRuta} customStyles={{ fontSize: 20 / PixelRatio.getFontScale(), color: '#000' }} />
+                            <LabelEncabezado texto={Pedido} customStyles={{ fontSize: 17 / PixelRatio.getFontScale(), color: '#000' }} />
                         } style={{ backgroundColor: '#fff' }} />
-                    {/* <BloqueEncabezado
+                    <BloqueEncabezado
                         size={2}
                         content={
                             <LabelEncabezado texto='Fecha' />
-                        } /> */}
+                        } style={{ alignItems: 'center' }} />
                     <BloqueEncabezado
                         size={4}
                         content={
-                            <LabelEncabezado texto={item.Fecha} customStyles={{ fontSize: 12  / PixelRatio.getFontScale() }} />
-                        }/>
+                            <LabelEncabezado texto={Fecha} customStyles={{ fontSize: 12 / PixelRatio.getFontScale(), color: '#000' }} />
+                        } style={{ backgroundColor: '#fff' }} />
                 </Row>
                 <Row>
                     <BloqueEncabezado
-                        size={2}
+                        size={3}
                         content={
-                            <LabelEncabezado texto='Pedido' customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#000' }} />
+                            <LabelEncabezado texto='Cliente' />
+                        } style={{ alignItems: 'center' }} />
+                    <BloqueEncabezado
+                        size={10}
+                        content={
+                            <LabelEncabezado texto={`( ${Cliente} )  ${Razon}`} customStyles={{ fontSize: 12 / PixelRatio.getFontScale(), color: '#000', fontWeight: 'bold' }} />
+                        }  style={{ backgroundColor: '#fff', alignItems: 'flex-start' }}  />
+                </Row>
+                <Row style={{marginTop: 10}}>
+                    <BloqueEncabezado
+                        size={3}
+                        content={
+                            <LabelEncabezado texto='Producto' customStyles={{ fontSize: 11 / PixelRatio.getFontScale(), color: '#000' }} />
+                        } style={styles.EncabezadoPedidos} />
+                    <BloqueEncabezado
+                        size={3}
+                        content={
+                            <LabelEncabezado texto='Descripción' customStyles={{ fontSize: 11 / PixelRatio.getFontScale(), color: '#000' }} />
                         } style={styles.EncabezadoPedidos} />
                     <BloqueEncabezado
                         size={2}
                         content={
-                            <LabelEncabezado texto='Cliente' customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#000' }} />
-                        } style={styles.EncabezadoPedidos} />
-                    <BloqueEncabezado
-                        size={6}
-                        content={
-                            <LabelEncabezado texto='Razón' customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#000' }} />
+                            <LabelEncabezado texto='Cant.' customStyles={{ fontSize: 13 / PixelRatio.getFontScale(), color: '#000' }} />
                         } style={styles.EncabezadoPedidos} />
                     <BloqueEncabezado
                         size={2}
                         content={
-                            <LabelEncabezado texto='Cant. Items' customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#000' }} />
+                            <LabelEncabezado texto='Fact.' customStyles={{ fontSize: 13 / PixelRatio.getFontScale(), color: '#000' }} />
+                        } style={styles.EncabezadoPedidos} />
+                    <BloqueEncabezado
+                        size={2}
+                        content={
+                            <LabelEncabezado texto='Saldo' customStyles={{ fontSize: 11 / PixelRatio.getFontScale(), color: '#000' }} />
                         } style={styles.EncabezadoPedidos} />
                 </Row>
                 <Grid>
-                    {_.sortBy(item.Datos, 'Razon').map(this.RenderPedido)}
+                    {_.sortBy(Productos, 'DescProducto').map(this.RenderPedido)}
                 </Grid>
             </Col>
-
-        </ListItem>
+        </Grid>
     )
-
-    RenderVendedor = item => (
-        <View key={item.Vendedor}>
-            <ListItem itemHeader key={item.Vendedor} style={{ backgroundColor: Config.bgColorSecundario, justifyContent: 'center' }}>
-                <Text style={{ color: '#fff', fontSize: 20 / PixelRatio.getFontScale(), marginTop: 10 }}>{item.DesVendedor}</Text>
-            </ListItem>
-            <Grid>
-                <List
-                    dataArray={item.Datos}
-                    renderRow={this.RenderHojaRuta}>
-                </List>
-            </Grid>
-        </View>
-    )
-
-    handleOnPressDate = d => {
-        if (d.toLocaleString() != this.state.date.toLocaleString()) {
-            this.setState({ date: d }, this._ReGenerarItems)
-        }
-    }
 
     render() {
         return (
             <Container>
                 <Header searchBar rounded style={{ backgroundColor: Config.bgColorSecundario, borderTopColor: '#ccc', borderTopWidth: 1 }}>
-                    {/* <Item style={{ flex: 2 }}>
-                        <Icon name="ios-search" />
-                        <Input placeholder="Search" onChangeText={this._handleChangeTextFiltro} value={this.state.textFilter} />
-                    </Item> */}
-                    <View style={{ flexDirection: 'row', flex: 1, alignItems: 'center', paddingLeft: 20, minWidth: 80 / PixelRatio.getFontScale() }}>
-                        <Text style={{ color: '#fff' }}>Fecha:</Text>
-                        <DatePicker
-                            minDate={`${Math.min(...this.state.Anios.map(a => a.Anio))}-01-01`}
-                            maxDate={moment().format('DD-MM-YYYY')}
-                            onDateChange={this.handleOnPressDate}
-                            //style={{ width: 130 / PixelRatio.getFontScale() }}
-                            customStyles={{
-                                dateText: { color: '#FFF' },
-                                dateInput: { borderWidth: 0 }
-                            }}
-                            date={this.state.date}
-                            mode="date"
-                            format="DD-MM-YYYY" />
+                    <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'center', alignItems: 'center', paddingLeft: 20, minWidth: 80 }}>
+                        <Text style={{ fontSize: 14 / PixelRatio.getFontScale(), color: '#fff' }}>
+                            Detalles de Pedido Pendiente.
+                        </Text>
                     </View>
                 </Header>
                 <Content style={{ borderTopColor: '#ccc', borderTopWidth: 1 }}>
                     {this.state.refrescando ? <Spinner /> :
                         <List
                             dataArray={this.state.itemsFiltrados}
-                            renderRow={this.RenderVendedor}
-                        >
-
-                        </List>}
+                            renderRow={this.RenderDetalles}
+                        /> }
                 </Content>
             </Container>
         )
@@ -266,10 +252,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#ddd',
         paddingHorizontal: 5,
         paddingVertical: 5,
-        borderLeftWidth: 1,
-        borderRightWidth: 1,
         borderBottomWidth: 1,
-        borderColor: '#bbb'
+        borderColor: '#bbb',
+        alignItems: 'center'
     },
     RenglonPedidos: {
         backgroundColor: '#fff',
@@ -277,7 +262,7 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         borderBottomColor: '#eee',
         borderBottomWidth: 1,
-        paddingVertical: 10
+        paddingVertical: 10, 
     },
     RenglonPedidos2: {
         backgroundColor: '#fff',
@@ -286,6 +271,6 @@ const styles = StyleSheet.create({
         borderBottomColor: '#eee',
         borderBottomWidth: 1,
         paddingVertical: 10,
-        justifyContent: 'flex-start'
+        alignItems: 'flex-start' 
     }
 });
