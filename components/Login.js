@@ -1,11 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Image, Dimensions, PixelRatio } from 'react-native';
 import Config from '../config/config.js';
-import { Container, Text, Content, Form, Item, Input, Label, Icon, Button, Spinner } from 'native-base';
+import { Container, Text, Content, Form, Item, Input, Icon, Button, Spinner } from 'native-base';
 import { Grid, Col, Row } from 'react-native-easy-grid';
-import RF from 'react-native-responsive-fontsize';
-import {responsiveFontSize, responsiveWidth } from 'react-native-responsive-dimensions';
-import ImageResponsive from 'react-native-responsive-image';
+import { responsiveWidth } from 'react-native-responsive-dimensions';
 
 const MSG_CLAVE_ERRONEA = 'La clave indicada no es una cláve válida. Vuela a intentar.';
 
@@ -60,19 +58,19 @@ export default class DetallesPedido extends React.PureComponent {
     };
 
     handleOnPress = async () => {
-        this.setState({ showError: false, msgError: '', Sending: true });
-
         let Clave = this.state.passVendedor;
+        
+        if (Clave == "") return;
 
-        //if (Clave == "") Clave = "carrozzo10";
-
+        this.setState({ showError: false, msgError: '', Sending: true });
+        
         Config.Consultar('Login/' + Clave, (resp) => {
             resp.then(res => res.json())
                 .then((resJson) => {
                     const { Vendedor } = resJson.resultados[0];
                     global.idVendedor = Vendedor;
                     if (Vendedor > 0) {
-                        this.setState({ Sending: false }, () => {
+                        this.setState({ Sending: false, passVendedor: '' }, () => {
                             this.props.navigation.navigate('Menu');
                         });
                     } else {
@@ -114,12 +112,15 @@ export default class DetallesPedido extends React.PureComponent {
                                 <Col style={{ maxWidth: responsiveWidth(80)}}>
                                     <Form style={styles.loginFormContainer}>
                                         <Row>
-                                            <Item floatingLabel last style={{ flex: 1 }}>
+                                            <Item last style={{ flex: 1 }}>
                                                 <Icon active name='key' style={styles.loginFormIconInput} />
-                                                <Label style={{ color: '#fff', marginLeft: 5 }}>Contraseña...</Label>
+                                                {/* <Label style={{ color: '#fff', marginLeft: 5 }}>Contraseña...</Label> */}
                                                 <Input getRef={i => this.txtInput = i} secureTextEntry={true} style={[styles.InputText]}
                                                     onChangeText={this.handleOnChangeText}
                                                     onSubmitEditing={this.handleOnPress}
+                                                    placeholder='Contraseña...'
+                                                    placeholderTextColor='#fff'
+                                                    value={this.state.passVendedor}
                                                 />
                                             </Item>
                                         </Row>
@@ -153,7 +154,7 @@ const styles = StyleSheet.create({
     },
     InputText: {
         color: '#ccc',
-        padding: 10,
+        //padding: 10,
         marginBottom: 2,
     },
     ButtonForm: {
