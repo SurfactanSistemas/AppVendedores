@@ -17,7 +17,7 @@ const LabelEncabezado = ({ texto, customStyles }) => (
 )
 
 const BloqueEncabezado = ({ content, size, style }) => (
-    <Col size={size} style={[{ backgroundColor: Config.bgColorSecundario, justifyContent: 'center', paddingHorizontal: 15, paddingVertical: 10 }, style]}>
+    <Col size={size} style={[{ backgroundColor: Config.bgColorSecundario, justifyContent: 'center', paddingVertical: 10 }, style]}>
         {content}
     </Col>
 )
@@ -121,29 +121,59 @@ export default class ListadoPedidosPendientes extends React.Component {
 
     handleOnPressDetalles = (Pedido) => this.props.navigation.navigate('DetallesPedidoPendiente', { Pedido: Pedido });
 
-    RenderPedido = ({ Pedido, Fecha, Cliente, Razon, Productos }) => (
+    RenderPedido = ({ Pedido, Fecha, CantProd }) => (
 
         <Row key={Pedido} onPress={() => this.handleOnPressDetalles(Pedido)} style={{ alignItems: 'center', borderBottomColor: '#aaa', borderBottomWidth: 0.5 }} >
             <BloqueEncabezado
                 size={2}
                 content={
-                    <LabelEncabezado texto={Pedido} customStyles={{ fontSize: 11  / PixelRatio.getFontScale(), color: '#000' }} />
+                    <LabelEncabezado texto={Pedido} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: '#000' }} />
                 } style={styles.RenglonPedidos} />
             <BloqueEncabezado
-                size={2}
+                size={5}
                 content={
-                    <LabelEncabezado texto={Fecha} customStyles={{ fontSize: 11  / PixelRatio.getFontScale(), color: '#000' }} />
+                    <LabelEncabezado texto={Fecha} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: '#000' }} />
                 } style={styles.RenglonPedidos2} />
             <BloqueEncabezado
-                size={6}
+                size={5}
                 content={
-                    <LabelEncabezado texto={`( ${Cliente} )  ${Razon}`} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: '#000' }} />
+                    <LabelEncabezado texto={CantProd} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: '#000' }} />
                 } style={styles.RenglonPedidos2} />
-            <BloqueEncabezado
-                size={1}
-                content={
-                    <LabelEncabezado texto={Productos.length} customStyles={{ fontSize: 11  / PixelRatio.getFontScale(), color: '#000' }} />
-                } style={styles.RenglonPedidos} />
+        </Row>
+    )
+
+    RenderCliente = ({ Cliente, Razon, Pedidos }) => (
+
+        <Row key={Cliente} style={{ alignItems: 'center', borderBottomColor: '#ccc', borderBottomWidth: 0.5, marginBottom: 10 }} >
+            <Col>
+                <Row>
+                    <BloqueEncabezado
+                        content={
+                            <LabelEncabezado texto={`( ${Cliente} )  ${Razon}`} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: '#fff' }} />
+                        } style={{ backgroundColor: Config.bgColorSecundario, paddingLeft: 15 }} />
+                </Row>
+                <Row style={{ borderBottomColor: '#aaa', borderBottomWidth: 0.5, marginBottom: 5, paddingVertical: 10 }}>
+                    <Col size={2} style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
+                            Pedido
+                        </Text>
+                    </Col>
+                    <Col size={5} style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
+                            Fecha Pedido
+                        </Text>
+                    </Col>
+                    <Col size={5} style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
+                            Cant. Prod.
+                        </Text>
+                    </Col>
+                </Row>
+                <List
+                    dataArray={Pedidos}
+                    renderRow={this.RenderPedido}>
+                </List>
+            </Col>
         </Row>
     )
 
@@ -153,39 +183,17 @@ export default class ListadoPedidosPendientes extends React.Component {
                 <Text style={{ color: '#fff', fontSize: 20 / PixelRatio.getFontScale(), marginTop: 10 }}>{item.DescVendedor}</Text>
             </ListItem>
             <Grid>
-                <Col>
-                    <Row style={{ borderBottomColor: '#aaa', borderBottomWidth: 0.5 }} >
-                        <BloqueEncabezado
-                            size={2}
-                            content={
-                                <LabelEncabezado texto='Pedido' customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: '#000' }} />
-                            } style={styles.EncabezadoPedidos} />
-                        <BloqueEncabezado
-                            size={2}
-                            content={
-                                <LabelEncabezado texto='Fecha' customStyles={{ fontSize: 11  / PixelRatio.getFontScale(), color: '#000' }} />
-                            } style={styles.EncabezadoPedidos} />
-                        <BloqueEncabezado
-                            size={6}
-                            content={
-                                <LabelEncabezado texto='Cliente' customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: '#000' }} />
-                            } style={styles.EncabezadoPedidos} />
-                        <BloqueEncabezado
-                            size={1}
-                            content={
-                                <LabelEncabezado texto='Items' customStyles={{ fontSize: 11  / PixelRatio.getFontScale(), color: '#000' }} />
-                            } style={styles.EncabezadoPedidos} />
-                    </Row>
+                <Col style={{ marginVertical: 20 }}>
                     <Row>
                         <List
                             dataArray={item.Datos}
-                            renderRow={this.RenderPedido}>
+                            renderRow={this.RenderCliente}>
                         </List>
                     </Row>
                 </Col>
             </Grid>
         </View>
-    )
+    ) 
 
     handleOnPressDate = d => {
         if (d.toLocaleString() != this.state.date.toLocaleString()) {
@@ -223,14 +231,12 @@ const styles = StyleSheet.create({
     },
     RenglonPedidos: {
         backgroundColor: '#fff',
-        paddingHorizontal: 5,
-        paddingVertical: 10,
-        alignItems: 'flex-end'
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     RenglonPedidos2: {
         backgroundColor: '#fff',
-        paddingHorizontal: 5,
-        paddingVertical: 5,
-        justifyContent: 'flex-start'
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 });

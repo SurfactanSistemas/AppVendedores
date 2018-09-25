@@ -2,8 +2,8 @@ const bgColor = '#133c74';
 const bgColorSecundario = '#15427F';
 const bgColorTerciario = '#1a55a7';
 
-// const BASE_URL = "http://6f7c6d63.ngrok.io/Api/"; // Desarrollo
-const BASE_URL = "http://201.231.98.97/Api/"; // Produccion
+const BASE_URL = "http://a70a3093.ngrok.io/Api/"; // Desarrollo
+// const BASE_URL = "http://201.231.98.97/Api/"; // Produccion
 
 const NormalizarNumero = (num) => {
     num = num.substring(0, 1) == '.' ? '0' + num : num;
