@@ -31,7 +31,7 @@ const RenderProducto = ({producto, navigation}) => (
                         <Text style={{fontSize: 10 / PixelRatio.getFontScale(), fontStyle: 'italic'}}>
                             {producto.Datos.reduce((total, d) => {
                                return total + d.Cantidad
-                            },0)} Kilos(s)
+                            },0)} Kg(s)
                         </Text>
                     </View>
                 </Col>

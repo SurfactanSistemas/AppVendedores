@@ -154,42 +154,52 @@ export default class DetallePedidoPendiente extends React.Component {
         </Row>
     )
 
-    RenderDetalles = ({ Pedido, Fecha, Cliente, Razon, Productos }) => (
+    RenderDetalles = ({ Pedido, Fecha, Cliente, Razon, Productos, FechaEntrega, Autorizado }) => (
         <Grid>
             <Col>
-                <Row style={{ borderBottomColor: '#ccc', borderBottomWidth: 0.5, marginTop: 5 }}>
+                <Row style={{borderBottomColor: '#eee', borderBottomWidth: 1}}>
                     <BloqueEncabezado
                         size={2}
                         content={
                             <LabelEncabezado texto='Nro' />
                         } style={{ alignItems: 'center' }} />
                     <BloqueEncabezado
-                        size={3}
-                        content={
-                            <LabelEncabezado texto={Pedido} customStyles={{ fontSize: 17 / PixelRatio.getFontScale(), color: '#000' }} />
-                        } style={{ backgroundColor: '#fff' }} />
-                    <BloqueEncabezado
                         size={2}
                         content={
-                            <LabelEncabezado texto='Fecha' />
-                        } style={{ alignItems: 'center' }} />
-                    <BloqueEncabezado
-                        size={4}
-                        content={
-                            <LabelEncabezado texto={Fecha} customStyles={{ fontSize: 12 / PixelRatio.getFontScale(), color: '#000' }} />
-                        } style={{ backgroundColor: '#fff' }} />
-                </Row>
-                <Row>
+                            <LabelEncabezado texto={Pedido} customStyles={{ fontSize: 12 / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
+                        } style={{ backgroundColor: Autorizado === 'N' ? 'red' : '#fff' }} />
                     <BloqueEncabezado
                         size={3}
                         content={
                             <LabelEncabezado texto='Cliente' />
                         } style={{ alignItems: 'center' }} />
                     <BloqueEncabezado
-                        size={10}
+                        size={5}
                         content={
                             <LabelEncabezado texto={`( ${Cliente} )  ${Razon}`} customStyles={{ fontSize: 12 / PixelRatio.getFontScale(), color: '#000', fontWeight: 'bold' }} />
                         }  style={{ backgroundColor: '#fff', alignItems: 'flex-start' }}  />
+                </Row>
+                <Row>
+                    <BloqueEncabezado
+                        size={2}
+                        content={
+                            <LabelEncabezado texto='Fecha' />
+                        } style={{ alignItems: 'center' }} />    
+                    <BloqueEncabezado
+                        size={4}
+                        content={
+                            <LabelEncabezado texto={Fecha} customStyles={{ fontSize: 12 / PixelRatio.getFontScale(), color: '#000' }} />
+                        } style={{ backgroundColor: '#fff' }} />
+                    <BloqueEncabezado
+                        size={2}
+                        content={
+                            <LabelEncabezado texto='Ent.' />
+                        } style={{ alignItems: 'center' }} />
+                    <BloqueEncabezado
+                        size={4}
+                        content={
+                            <LabelEncabezado texto={FechaEntrega} customStyles={{ fontSize: 12 / PixelRatio.getFontScale(), color: '#000' }} />
+                        } style={{ backgroundColor: '#fff' }} />
                 </Row>
                 <Row style={{marginTop: 10}}>
                     <BloqueEncabezado

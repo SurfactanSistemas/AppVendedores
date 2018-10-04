@@ -149,7 +149,7 @@ export default class ListadoPedidos extends React.Component {
     )
 
     RenderHojaRuta = item => (
-        <ListItem key={item.Cliente} style={{ marginLeft: 0, paddingHorizontal: 15, borderBottomColor: '#aaa', borderBottomWidth: 2 }}>
+        <ListItem key={item.Cliente} style={{ marginLeft: 0, paddingHorizontal: 5, borderBottomColor: '#aaa', borderBottomWidth: 2 }}>
             <Col>
                 <Row>
                     <BloqueEncabezado

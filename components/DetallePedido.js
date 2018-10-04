@@ -226,7 +226,7 @@ export default class DetallePedido extends React.Component {
                         </Text>
                     </View>
                 </Header>
-                <Content style={{ borderTopColor: '#ccc', borderTopWidth: 1, paddingHorizontal: responsiveWidth(3) }}>
+                <Content style={{ borderTopColor: '#ccc', borderTopWidth: 1, paddingHorizontal: 5 }}>
                     {this.state.refrescando ? <Spinner /> :
                         <List
                             dataArray={this.state.itemsFiltrados}

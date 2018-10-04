@@ -107,7 +107,7 @@ export default class DetallesPedido extends React.PureComponent{
 																		<Text style={{fontSize: 13 / PixelRatio.getFontScale(), color: '#fff', fontWeight: 'bold'}}>Descripción</Text>
 																	</Col>
 																	<Col size={1} style={{justifyContent: 'center', alignItems: 'center'}}>
-																		<Text style={{fontSize: 12 / PixelRatio.getFontScale(), color: '#fff', fontWeight: 'bold'}}>Cant. (Kgs)</Text>
+																		<Text style={{fontSize: 12 / PixelRatio.getFontScale(), color: '#fff', fontWeight: 'bold'}}>Kgs</Text>
 																	</Col>
 																</Row>
 																{Productos.map((producto) => {

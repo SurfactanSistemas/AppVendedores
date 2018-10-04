@@ -122,7 +122,7 @@ export default class ListadoPrecios extends React.PureComponent{
                             <Col size={3} style={{ justifyContent: 'center' }}>
                                 <Text style={{ fontSize: 10 / PixelRatio.getFontScale(), fontStyle: 'italic'}}>
 
-                                    {item.CantidadTerminados} Productos(s)
+                                    {item.CantidadTerminados} Prod(s)
 
                                 </Text>
                             </Col>

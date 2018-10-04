@@ -132,7 +132,7 @@ export default class ListadoMuestras extends React.Component{
                     
                     <Text style={{fontSize: 10 / PixelRatio.getFontScale(), fontStyle: 'italic'}}>
 
-                        {itemCliente.Datos.length} Pedido(s)
+                        {itemCliente.Datos.length} Ped(s)
 
                     </Text>
                 </View>

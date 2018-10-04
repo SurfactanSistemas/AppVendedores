@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Dimensions, StyleSheet, PixelRatio } from 'react-native';
 import MenuHeaderButton from './MenuHeaderButton';
 import HeaderNav from './HeaderNav.js';
-import { Container, Text, Content, List, ListItem, Spinner } from 'native-base';
+import { Container, Text, Content, List, ListItem, Spinner, CheckBox } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import Config from '../config/config.js';
 import _ from 'lodash';
@@ -45,7 +45,8 @@ export default class ListadoPedidosPendientes extends React.Component {
         textFilter: '',
         itemsFiltrados: [],
         primeraVez: true,
-        date: moment().format('DD-MM-YYYY')
+        date: moment().format('DD-MM-YYYY'),
+        soloAutorizado: false
     }
 
     async componentDidMount() {
@@ -70,7 +71,9 @@ export default class ListadoPedidosPendientes extends React.Component {
 
         this.setState({ refrescando: true, primeraVez: true });
 
-        return Config.Consultar(`Pedidos/Pendientes/${global.idVendedor}`, (resp) => {
+        const _SoloAutorizados = this.state.soloAutorizado ? '1' : '0';
+
+        return Config.Consultar(`Pedidos/Pendientes/${global.idVendedor}/${_SoloAutorizados}`, (resp) => {
             resp.then(response => response.json())
                 .then(responseJson => {
 
@@ -121,24 +124,29 @@ export default class ListadoPedidosPendientes extends React.Component {
 
     handleOnPressDetalles = (Pedido) => this.props.navigation.navigate('DetallesPedidoPendiente', { Pedido: Pedido });
 
-    RenderPedido = ({ Pedido, Fecha, CantProd }) => (
+    RenderPedido = ({ Pedido, Fecha, FechaEntrega, CantProd, Autorizado }) => (
 
         <Row key={Pedido} onPress={() => this.handleOnPressDetalles(Pedido)} style={{ alignItems: 'center', borderBottomColor: '#aaa', borderBottomWidth: 0.5 }} >
             <BloqueEncabezado
-                size={2}
+                size={3}
                 content={
-                    <LabelEncabezado texto={Pedido} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: '#000' }} />
-                } style={styles.RenglonPedidos} />
+                    <LabelEncabezado texto={Pedido} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
+                } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
             <BloqueEncabezado
-                size={5}
+                size={3}
                 content={
-                    <LabelEncabezado texto={Fecha} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: '#000' }} />
-                } style={styles.RenglonPedidos2} />
+                    <LabelEncabezado texto={Fecha} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
+                } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
             <BloqueEncabezado
-                size={5}
+                size={3}
                 content={
-                    <LabelEncabezado texto={CantProd} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: '#000' }} />
-                } style={styles.RenglonPedidos2} />
+                    <LabelEncabezado texto={FechaEntrega} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
+                } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
+            <BloqueEncabezado
+                size={3}
+                content={
+                    <LabelEncabezado texto={CantProd} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
+                } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
         </Row>
     )
 
@@ -149,21 +157,26 @@ export default class ListadoPedidosPendientes extends React.Component {
                 <Row>
                     <BloqueEncabezado
                         content={
-                            <LabelEncabezado texto={`( ${Cliente} )  ${Razon}`} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: '#fff' }} />
+                            <LabelEncabezado texto={`( ${Cliente} )  ${Razon}`} customStyles={{ fontSize: 16  / PixelRatio.getFontScale(), color: '#fff' }} />
                         } style={{ backgroundColor: Config.bgColorSecundario, paddingLeft: 15 }} />
                 </Row>
-                <Row style={{ borderBottomColor: '#aaa', borderBottomWidth: 0.5, marginBottom: 5, paddingVertical: 10 }}>
-                    <Col size={2} style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <Row style={{ borderBottomColor: '#aaa', borderBottomWidth: 0.5, marginBottom: 5, paddingVertical: 10, backgroundColor: '#ccc' }}>
+                    <Col size={3} style={{ justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
                             Pedido
                         </Text>
                     </Col>
-                    <Col size={5} style={{ justifyContent: 'center', alignItems: 'center' }}>
+                    <Col size={3} style={{ justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
                             Fecha Pedido
                         </Text>
                     </Col>
-                    <Col size={5} style={{ justifyContent: 'center', alignItems: 'center' }}>
+                    <Col size={3} style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
+                            Fecha Entrega
+                        </Text>
+                    </Col>
+                    <Col size={3} style={{ justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
                             Cant. Prod.
                         </Text>
@@ -179,11 +192,24 @@ export default class ListadoPedidosPendientes extends React.Component {
 
     RenderVendedor = item => (
         <View key={item.Vendedor}>
-            <ListItem itemHeader key={item.Vendedor} style={{ backgroundColor: Config.bgColorSecundario, justifyContent: 'center', borderBottomColor: '#ccc', borderBottomWidth: 0.5 }}>
+            <ListItem itemHeader key={item.Vendedor} style={{ backgroundColor: Config.bgColorSecundario, justifyContent: 'center', alignItems: 'center', borderBottomColor: '#ccc', borderBottomWidth: 0.5, flexDirection: 'column' }}>
                 <Text style={{ color: '#fff', fontSize: 20 / PixelRatio.getFontScale(), marginTop: 10 }}>{item.DescVendedor}</Text>
+                <Text style={{ color: '#fff', fontSize: 12 / PixelRatio.getFontScale(), marginTop: 10, height: !this.state.soloAutorizado ? 15 : 0  }}>{!this.state.soloAutorizado ? 'Sólo Pedidos Autorizados' : ''}</Text>
             </ListItem>
             <Grid>
                 <Col style={{ marginVertical: 20 }}>
+                    <Row style={{ paddingLeft: 10, marginBottom: 10 }}>
+                        <Text onPress={() => this.setState({soloAutorizado: !this.state.soloAutorizado}, this._ReGenerarItems)}
+                            style={{ fontSize: 12 / PixelRatio.getFontScale() }}
+                        >
+                            Incluir No Autorizados
+                        </Text>
+                        <CheckBox 
+                            checked={this.state.soloAutorizado}
+                            color={Config.bgColorSecundario}
+                            onPress={() => this.setState({soloAutorizado: !this.state.soloAutorizado}, this._ReGenerarItems)}
+                        />
+                    </Row>
                     <Row>
                         <List
                             dataArray={item.Datos}
@@ -230,12 +256,10 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     RenglonPedidos: {
-        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center'
     },
     RenglonPedidos2: {
-        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center'
     }
