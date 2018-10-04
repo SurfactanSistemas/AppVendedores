@@ -67,14 +67,14 @@ export default class DetallesPedido extends React.PureComponent {
         Config.Consultar('Login/' + Clave, (resp) => {
             resp.then(res => res.json())
                 .then((resJson) => {
-                    const { Vendedor } = resJson.resultados[0];
-                    global.idVendedor = Vendedor;
-                    if (Vendedor > 0) {
+                    if (resJson.resultados.length > 0) {
+                        const { Vendedor } = resJson.resultados[0];
+                        global.idVendedor = Vendedor;
                         this.setState({ Sending: false, passVendedor: '' }, () => {
                             this.props.navigation.navigate('Menu');
                         });
                     } else {
-                        this.setState({ showError: true, msgError: MSG_CLAVE_ERRONEA, Sending: false });
+                        this.setState({ showError: true, msgError: MSG_CLAVE_ERRONEA, Sending: false, passVendedor: '' });
                     }
                 })
                 .catch((err) => {
@@ -129,14 +129,14 @@ export default class DetallesPedido extends React.PureComponent {
                                                 {this.textoBoton()}
                                             </Button>
                                         </Row>
+                                        <Row>
+                                            <Text style={{ color: 'yellow', fontSize: 14 / PixelRatio.getFontScale(), textAlign: 'center' }}>{this.state.msgError}</Text>
+                                        </Row>
                                     </Form>
                                 </Col>
                             </Row>
                         </Col>
                     </Grid>
-                    <View>
-                        <Text style={{ color: 'yellow', fontSize: 10 / PixelRatio.getFontScale(), textAlign: 'center' }}>{this.state.msgError}</Text>
-                    </View>
                 </Content>
             </Container>
         );

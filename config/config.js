@@ -2,7 +2,7 @@ const bgColor = '#133c74';
 const bgColorSecundario = '#15427F';
 const bgColorTerciario = '#1a55a7';
 
-const BASE_URL = "http://a70a3093.ngrok.io/Api/"; // Desarrollo
+const BASE_URL = "http://0d8ee89b.ngrok.io/Api/"; // Desarrollo
 // const BASE_URL = "http://201.231.98.97/Api/"; // Produccion
 
 const NormalizarNumero = (num) => {
