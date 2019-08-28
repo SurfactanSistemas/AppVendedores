@@ -4,12 +4,20 @@ const bgColorTerciario = '#1a55a7';
 
 // const BASE_URL = "http://7944b6b5.ngrok.io/Api/"; // Desarrollo
 const BASE_URL = "http://201.231.98.97/Api/"; // Produccion
+const BASE_URLII = "http://190.195.128.227/Api/"; // Produccion
+let BASE_FINAL = "";
 
 const NormalizarNumero = (num) => {
     num = num.substring(0, 1) == '.' ? '0' + num : num;
-
     return parseFloat(num).toFixed(2);
 } ;
+
+const ApiUrlBase = async () => {
+    if (BASE_FINAL === ""){
+        BASE_FINAL = await fetch(`${BASE_URLII}Muestras`).then(resp => BASE_URLII).catch(err => BASE_URL);
+    }
+    return BASE_FINAL;
+};
 
 const ConsultarUrlConsulta = (urlConsulta, callback) => {
     fetch('https://raw.githubusercontent.com/fergthh/surfac/master/muestrasDBURL.json')
@@ -20,7 +28,8 @@ const ConsultarUrlConsulta = (urlConsulta, callback) => {
 }
 
 const Consultar = async (urlConsulta, callback) => {
-    callback(fetch(BASE_URL + urlConsulta));
+    let _base = await ApiUrlBase();
+    callback(fetch(_base + urlConsulta));
 }
 
 export default {
