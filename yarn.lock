@@ -1574,13 +1574,6 @@ babel-register@^6.24.1, babel-register@^6.26.0:
     mkdirp "^0.5.1"
     source-map-support "^0.4.15"
 
-babel-runtime@6.11.6:
-  version "6.11.6"
-  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.11.6.tgz#6db707fef2d49c49bfa3cb64efdb436b518b8222"
-  dependencies:
-    core-js "^2.4.0"
-    regenerator-runtime "^0.9.5"
-
 babel-runtime@^6.0.0, babel-runtime@^6.18.0, babel-runtime@^6.2.0, babel-runtime@^6.22.0, babel-runtime@^6.23.0, babel-runtime@^6.26.0, babel-runtime@^6.9.2:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
@@ -1662,10 +1655,10 @@ base@^0.11.1:
     pascalcase "^0.1.1"
 
 basic-auth@~2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-2.0.0.tgz#015db3f353e02e56377755f962742e8981e7bbba"
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-2.0.1.tgz#b998279bf47ce38344b4f3cf916d4679bbf51e3a"
   dependencies:
-    safe-buffer "5.1.1"
+    safe-buffer "5.1.2"
 
 bcrypt-pbkdf@^1.0.0:
   version "1.0.1"
@@ -1840,10 +1833,6 @@ camelcase@^1.0.2:
 camelcase@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-4.1.0.tgz#d545635be1e33c542649c69173e5de6acfae34dd"
-
-can-use-dom@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/can-use-dom/-/can-use-dom-0.1.0.tgz#22cc4a34a0abc43950f42c6411024a3f6366b45a"
 
 capture-exit@^1.2.0:
   version "1.2.0"
@@ -2081,7 +2070,7 @@ compressible@~2.0.13:
 
 compression@^1.7.1:
   version "1.7.2"
-  resolved "http://registry.npmjs.org/compression/-/compression-1.7.2.tgz#aaffbcd6aaf854b44ebb280353d5ad1651f59a69"
+  resolved "https://registry.npmjs.org/compression/-/compression-1.7.2.tgz#aaffbcd6aaf854b44ebb280353d5ad1651f59a69"
   dependencies:
     accepts "~1.3.4"
     bytes "3.0.0"
@@ -2170,14 +2159,6 @@ create-error-class@^3.0.0:
   dependencies:
     capture-stack-trace "^1.0.0"
 
-create-react-class@15.5.3:
-  version "15.5.3"
-  resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.5.3.tgz#fb0f7cae79339e9a179e194ef466efa3923820fe"
-  dependencies:
-    fbjs "^0.8.9"
-    loose-envify "^1.3.1"
-    object-assign "^4.1.1"
-
 create-react-class@^15.6.3:
   version "15.6.3"
   resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.3.tgz#2d73237fb3f970ae6ebe011a9e66f46dbca80036"
@@ -2240,6 +2221,10 @@ data-urls@^1.0.0:
     abab "^1.0.4"
     whatwg-mimetype "^2.0.0"
     whatwg-url "^6.4.0"
+
+debounce@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.0.tgz#44a540abc0ea9943018dc0eaa95cce87f65cd131"
 
 debug@2, debug@2.6.9, debug@^2.1.2, debug@^2.2.0, debug@^2.3.3, debug@^2.6.2, debug@^2.6.8, debug@^2.6.9:
   version "2.6.9"
@@ -2608,30 +2593,272 @@ expect@^22.4.0:
     jest-message-util "^22.4.3"
     jest-regex-util "^22.4.3"
 
-expo@^27.0.2:
-  version "27.1.0"
-  resolved "https://registry.yarnpkg.com/expo/-/expo-27.1.0.tgz#c8ec4a7abaf9ae96c6f2863320670e960ae2d78a"
+expo-ads-admob@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expo-ads-admob/-/expo-ads-admob-1.0.0.tgz#4debb00d90a584d06124a6de7fd8e89fef5385f5"
+  dependencies:
+    prop-types "^15.6.2"
+
+expo-analytics-segment@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expo-analytics-segment/-/expo-analytics-segment-1.0.0.tgz#d5d46cf276c94f69e39a5251e8b424d64f661a37"
+  dependencies:
+    expo-core "~1.1.0"
+
+expo-asset@~1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/expo-asset/-/expo-asset-1.1.1.tgz#f1957b39a120bd9177f1fad9b8e2a20dd3746e86"
+  dependencies:
+    expo-core "~1.2.0"
+    uri-parser "^1.0.1"
+    url-join "^4.0.0"
+
+expo-barcode-scanner-interface@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expo-barcode-scanner-interface/-/expo-barcode-scanner-interface-1.0.0.tgz#3b61227c8ee131871ab6d6a199384caad8f90510"
+
+expo-barcode-scanner@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expo-barcode-scanner/-/expo-barcode-scanner-1.0.0.tgz#fa59a67b34b2179c565246ac61c4de5e0d20b050"
+  dependencies:
+    expo-barcode-scanner-interface "~1.0.0"
+    lodash.mapvalues "^4.6.0"
+    prop-types "^15.6.0"
+
+expo-camera-interface@~1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/expo-camera-interface/-/expo-camera-interface-1.0.2.tgz#228f035ddb2960d4a62f1875f13ffe92fb65110c"
+  dependencies:
+    expo-core "~1.1.0"
+
+expo-camera@~1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/expo-camera/-/expo-camera-1.1.1.tgz#6fc5375a9ff8acc9ebb6712cc21f3e2d6f1a4af7"
+  dependencies:
+    expo-barcode-scanner-interface "~1.0.0"
+    expo-camera-interface "~1.0.2"
+    expo-core "~1.1.0"
+    expo-face-detector-interface "~1.0.2"
+    expo-file-system-interface "~1.0.2"
+    expo-permissions-interface "~1.1.0"
+    lodash.mapvalues "^4.6.0"
+    prop-types "^15.6.0"
+
+expo-constants-interface@~1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/expo-constants-interface/-/expo-constants-interface-1.0.2.tgz#94970e15ec0a41df4750c6e2c2af416cb8a6471c"
+  dependencies:
+    expo-core "~1.1.0"
+
+expo-constants@~1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-1.0.2.tgz#2b9f96bb26d5d20df60368a66c5a5f237c9659f3"
+  dependencies:
+    expo-constants-interface "~1.0.2"
+    expo-core "~1.1.0"
+
+expo-contacts@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expo-contacts/-/expo-contacts-1.0.0.tgz#07510f3d62c8ffa90c8161884b872f816e1ab42a"
+  dependencies:
+    expo-core "~1.1.0"
+    uuid-js "^0.7.5"
+
+expo-core@~1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/expo-core/-/expo-core-1.1.0.tgz#c6c81282cc33b7de3913e5c3e46462b8e8f733ec"
+
+expo-core@~1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/expo-core/-/expo-core-1.2.0.tgz#c8fecf18b36a5b583bcb69a0227d4a6e45b56f17"
+
+expo-face-detector-interface@~1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/expo-face-detector-interface/-/expo-face-detector-interface-1.0.2.tgz#4b193c81de335f0e584ec5dff021cec1979277da"
+  dependencies:
+    expo-core "~1.1.0"
+
+expo-face-detector@~1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/expo-face-detector/-/expo-face-detector-1.0.2.tgz#8133e422d98f515e058c82f1eff3433d040aab35"
+  dependencies:
+    expo-core "~1.1.0"
+    expo-face-detector-interface "~1.0.2"
+    expo-permissions-interface "~1.1.0"
+
+expo-file-system-interface@~1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/expo-file-system-interface/-/expo-file-system-interface-1.0.2.tgz#7803a9a776fd9aa1b22151ff5eb404c77fbd92f7"
+  dependencies:
+    expo-core "~1.1.0"
+
+expo-file-system@~1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/expo-file-system/-/expo-file-system-1.0.2.tgz#5e101296edd21b2dc9afa9ff1fe981ea3905ccb8"
+  dependencies:
+    expo-core "~1.1.0"
+    expo-file-system-interface "~1.0.2"
+    uuid-js "^0.7.5"
+
+expo-font-interface@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expo-font-interface/-/expo-font-interface-1.0.0.tgz#8e6d4b305499b30405ae425458a976359cdc0c10"
+  dependencies:
+    expo-core "~1.1.0"
+
+expo-font@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expo-font/-/expo-font-1.0.0.tgz#853a78820a857c1979d26a6414589b1bfe275a31"
+  dependencies:
+    expo-core "~1.1.0"
+    expo-font-interface "~1.0.0"
+    invariant "^2.2.2"
+
+expo-gl-cpp@~1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/expo-gl-cpp/-/expo-gl-cpp-1.0.2.tgz#5d1d22325065e80664491a79383674c914b2d034"
+  dependencies:
+    expo-core "~1.1.0"
+
+expo-gl@~1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/expo-gl/-/expo-gl-1.0.2.tgz#730811ab43b25ec68a8ebee036292589238342e0"
+  dependencies:
+    expo-camera-interface "~1.0.2"
+    expo-core "~1.1.0"
+    expo-file-system-interface "~1.0.2"
+    expo-gl-cpp "~1.0.2"
+
+expo-image-loader-interface@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expo-image-loader-interface/-/expo-image-loader-interface-1.0.0.tgz#77249526b81acc85116bfc36200d1accefb3f6d2"
+  dependencies:
+    expo-core "~1.1.0"
+
+expo-local-authentication@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expo-local-authentication/-/expo-local-authentication-1.0.0.tgz#c21d2cbe2d25bab5cdd05e6d38a41f9ba0615eeb"
+  dependencies:
+    expo-core "~1.1.0"
+    invariant "^2.2.4"
+
+expo-location@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expo-location/-/expo-location-1.0.0.tgz#98dab207fab7a8834abd1916df4f8534b4eccb02"
+  dependencies:
+    invariant "^2.2.4"
+
+expo-media-library@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expo-media-library/-/expo-media-library-1.0.0.tgz#af2b0c5b624e28541856e524ec876a014cd055c7"
+  dependencies:
+    expo-core "~1.1.0"
+    expo-permissions-interface "~1.1.0"
+
+expo-payments-stripe@~1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/expo-payments-stripe/-/expo-payments-stripe-1.0.1.tgz#feeb33fc8cfce692dafeffcca5c518dff82bc2d5"
+  dependencies:
+    expo-core "~1.1.0"
+
+expo-permissions-interface@~1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/expo-permissions-interface/-/expo-permissions-interface-1.1.0.tgz#82aa821466d421a7fa261dfc70e74320832f6307"
+  dependencies:
+    expo-core "~1.1.0"
+
+expo-permissions@~1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-1.1.0.tgz#45dbeea680c1065d13aa451a41ab3af46fd34e67"
+  dependencies:
+    expo-core "~1.1.0"
+    expo-permissions-interface "~1.1.0"
+
+expo-print@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expo-print/-/expo-print-1.0.0.tgz#dacc797614c5062d003dc29cc4da67d661ed3f9f"
+  dependencies:
+    babel-preset-expo "^4.0.0"
+    expo-core "~1.1.0"
+
+expo-react-native-adapter@~1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/expo-react-native-adapter/-/expo-react-native-adapter-1.1.1.tgz#a8a4bcd8d17323924aac991ac727e9bcab9da6e1"
+  dependencies:
+    expo-core "~1.1.0"
+    expo-image-loader-interface "~1.0.0"
+    expo-permissions-interface "~1.1.0"
+    lodash.omit "^4.5.0"
+    lodash.pick "^4.4.0"
+    prop-types "^15.6.1"
+
+expo-sensors-interface@~1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/expo-sensors-interface/-/expo-sensors-interface-1.0.2.tgz#522ce6724409000ae6fd05c8775163089342ea09"
+  dependencies:
+    expo-core "~1.1.0"
+
+expo-sensors@~1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/expo-sensors/-/expo-sensors-1.0.2.tgz#bdfe10ab0b25c64cc1c40bdf6cd3f0899f07c860"
+  dependencies:
+    expo-core "~1.1.0"
+    expo-sensors-interface "~1.0.2"
+    invariant "^2.2.4"
+
+expo-sms@~1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/expo-sms/-/expo-sms-1.0.2.tgz#9856b4fbd2c6c62de14a5a3213c1d67aad46d72d"
+  dependencies:
+    expo-core "~1.1.0"
+    expo-permissions-interface "~1.1.0"
+
+expo@^30.0.0:
+  version "30.0.2"
+  resolved "https://registry.yarnpkg.com/expo/-/expo-30.0.2.tgz#f320f4f5d9da04746ebb6a478e5a11e56d14b7cd"
   dependencies:
     "@expo/vector-icons" "^6.3.1"
     "@expo/websql" "^1.0.1"
     babel-preset-expo "^4.0.0"
+    expo-ads-admob "~1.0.0"
+    expo-analytics-segment "~1.0.0"
+    expo-asset "~1.1.0"
+    expo-barcode-scanner "~1.0.0"
+    expo-camera "~1.1.0"
+    expo-constants "~1.0.2"
+    expo-contacts "~1.0.0"
+    expo-core "~1.1.0"
+    expo-face-detector "~1.0.2"
+    expo-file-system "~1.0.2"
+    expo-font "~1.0.0"
+    expo-gl "~1.0.2"
+    expo-local-authentication "~1.0.0"
+    expo-location "~1.0.0"
+    expo-media-library "~1.0.0"
+    expo-payments-stripe "~1.0.0"
+    expo-permissions "~1.1.0"
+    expo-print "~1.0.0"
+    expo-react-native-adapter "~1.1.0"
+    expo-sensors "~1.0.2"
+    expo-sms "~1.0.2"
     fbemitter "^2.1.1"
     invariant "^2.2.2"
     lodash.map "^4.6.0"
     lodash.omit "^4.5.0"
     lodash.zipobject "^4.1.3"
-    lottie-react-native "2.3.2"
+    lottie-react-native "2.5.0"
     md5-file "^3.2.3"
     pretty-format "^21.2.1"
     prop-types "^15.6.0"
     qs "^6.5.0"
-    react-native-branch "2.0.0-beta.3"
-    react-native-gesture-handler "1.0.0-alpha.41"
+    react-native-branch "2.2.5"
+    react-native-gesture-handler "1.0.6"
     react-native-maps "0.21.0"
+    react-native-reanimated "1.0.0-alpha.6"
+    react-native-screens "^1.0.0-alpha.5"
     react-native-svg "6.2.2"
-    react-native-svg-web "^1.0.1"
-    react-native-web-maps "^0.1.0"
     uuid-js "^0.7.5"
+    whatwg-fetch "^2.0.4"
 
 express@^4.13.4:
   version "4.16.3"
@@ -3119,10 +3346,6 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-google-maps-infobox@1.1.13:
-  version "1.1.13"
-  resolved "https://registry.yarnpkg.com/google-maps-infobox/-/google-maps-infobox-1.1.13.tgz#eb3a453220db4cab4e1f404e37da71e2155e24d7"
-
 got@^6.7.1:
   version "6.7.1"
   resolved "https://registry.yarnpkg.com/got/-/got-6.7.1.tgz#240cd05785a9a18e561dc1b44b41c763ef1e8db0"
@@ -3423,13 +3646,7 @@ instapromise@^2.0.7:
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/instapromise/-/instapromise-2.0.7.tgz#85e66b31021194da11214c865127ef04ec30167a"
 
-invariant@2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.1.tgz#b097010547668c7e337028ebe816ebe36c8a8d54"
-  dependencies:
-    loose-envify "^1.0.0"
-
-invariant@^2.0.0, invariant@^2.2.0, invariant@^2.2.2:
+invariant@^2.0.0, invariant@^2.2.0, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   dependencies:
@@ -4096,6 +4313,10 @@ js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
 
+"js-tokens@^3.0.0 || ^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
+
 js-yaml@^3.7.0:
   version "3.12.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.12.0.tgz#eaed656ec8344f10f527c6bfa1b6e2244de167d1"
@@ -4329,6 +4550,10 @@ lodash.map@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.map/-/lodash.map-4.6.0.tgz#771ec7839e3473d9c4cde28b19394c3562f4f6d3"
 
+lodash.mapvalues@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/lodash.mapvalues/-/lodash.mapvalues-4.6.0.tgz#1bafa5005de9dd6f4f26668c30ca37230cc9689c"
+
 lodash.omit@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.omit/-/lodash.omit-4.5.0.tgz#6eb19ae5a1ee1dd9df0b969e66ce0b7fa30b5e60"
@@ -4349,6 +4574,10 @@ lodash.padstart@^4.1.0:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/lodash.padstart/-/lodash.padstart-4.6.1.tgz#d2e3eebff0d9d39ad50f5cbd1b52a7bce6bb611b"
 
+lodash.pick@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.pick/-/lodash.pick-4.4.0.tgz#52f05610fff9ded422611441ed1fc123a03001b3"
+
 lodash.sortby@^4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
@@ -4360,10 +4589,6 @@ lodash.throttle@^4.1.1:
 lodash.zipobject@^4.1.3:
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/lodash.zipobject/-/lodash.zipobject-4.1.3.tgz#b399f5aba8ff62a746f6979bf20b214f964dbef8"
-
-lodash@4.16.2:
-  version "4.16.2"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.16.2.tgz#3e626db827048a699281a8a125226326cfc0e652"
 
 lodash@4.x, lodash@^4.0.0, lodash@^4.10.1, lodash@^4.11.1, lodash@^4.13.1, lodash@^4.14.1, lodash@^4.16.6, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1:
   version "4.17.10"
@@ -4395,16 +4620,22 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.3.1:
   dependencies:
     js-tokens "^3.0.0"
 
-lottie-ios@^2.1.5:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/lottie-ios/-/lottie-ios-2.5.0.tgz#55c808e785d4a6933b0c10b395530b17098b05de"
+loose-envify@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
+  dependencies:
+    js-tokens "^3.0.0 || ^4.0.0"
 
-lottie-react-native@2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/lottie-react-native/-/lottie-react-native-2.3.2.tgz#c9b751e1c121708cd6f50f7770cb5aa0e1042a29"
+lottie-ios@^2.5.0:
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/lottie-ios/-/lottie-ios-2.5.3.tgz#bff86b6662f9259439535d1548894c274c9e476f"
+
+lottie-react-native@2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/lottie-react-native/-/lottie-react-native-2.5.0.tgz#0711b8b34bec7741552c24b71efd3d4cab347571"
   dependencies:
     invariant "^2.2.2"
-    lottie-ios "^2.1.5"
+    lottie-ios "^2.5.0"
     prop-types "^15.5.10"
     react-native-safe-module "^1.1.0"
 
@@ -4470,10 +4701,6 @@ map-visit@^1.0.0:
   resolved "https://registry.yarnpkg.com/map-visit/-/map-visit-1.0.0.tgz#ecdca8f13144e660f1b5bd41f12f3479d98dfb8f"
   dependencies:
     object-visit "^1.0.0"
-
-marker-clusterer-plus@2.1.4:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/marker-clusterer-plus/-/marker-clusterer-plus-2.1.4.tgz#f8eff74d599dab3b7d0e3fed5264ea0e704f5d67"
 
 match-require@^2.0.0:
   version "2.1.0"
@@ -4790,12 +5017,12 @@ moment@2.x.x, moment@^2.10.6, moment@^2.22.0, moment@^2.22.2:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
 
 morgan@^1.9.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.9.0.tgz#d01fa6c65859b76fcf31b3cb53a3821a311d8051"
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.9.1.tgz#0a8d16734a1d9afbc824b99df87e738e58e2da59"
   dependencies:
     basic-auth "~2.0.0"
     debug "2.6.9"
-    depd "~1.1.1"
+    depd "~1.1.2"
     on-finished "~2.3.0"
     on-headers "~1.0.1"
 
@@ -5073,8 +5300,8 @@ on-finished@~2.3.0:
     ee-first "1.1.1"
 
 on-headers@~1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/on-headers/-/on-headers-1.0.1.tgz#928f5d0f470d49342651ea6794b0857c100693f7"
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/on-headers/-/on-headers-1.0.2.tgz#772b0ae6aaa525c399e489adfad90c403eb3c28f"
 
 once@^1.3.0, once@^1.4.0:
   version "1.4.0"
@@ -5442,12 +5669,6 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@15.5.8:
-  version "15.5.8"
-  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.8.tgz#6b7b2e141083be38c8595aa51fc55775c7199394"
-  dependencies:
-    fbjs "^0.8.9"
-
 prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
@@ -5455,6 +5676,14 @@ prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1:
     fbjs "^0.8.16"
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
+
+prop-types@^15.6.2:
+  version "15.7.2"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
+  dependencies:
+    loose-envify "^1.4.0"
+    object-assign "^4.1.1"
+    react-is "^16.8.1"
 
 proxy-addr@~2.0.3:
   version "2.0.3"
@@ -5590,38 +5819,21 @@ react-devtools-core@3.1.0:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
-react-display-name@0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/react-display-name/-/react-display-name-0.2.0.tgz#0e1f7086e45a32d07764df35ed32ff16f1259790"
-
-react-google-maps@^7.3.0:
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/react-google-maps/-/react-google-maps-7.3.0.tgz#b697da0438a3aa2b7f565a2d4c4876d0ed95012c"
-  dependencies:
-    babel-runtime "6.11.6"
-    can-use-dom "0.1.0"
-    create-react-class "15.5.3"
-    google-maps-infobox "1.1.13"
-    invariant "2.2.1"
-    lodash "4.16.2"
-    marker-clusterer-plus "2.1.4"
-    prop-types "15.5.8"
-    react-display-name "0.2.0"
-    react-prop-types-element-of-type "2.2.0"
-    scriptjs "2.5.8"
-    warning "3.0.0"
-
 react-is@^16.3.1, react-is@^16.4.1:
   version "16.4.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.4.1.tgz#d624c4650d2c65dbd52c72622bbf389435d9776e"
+
+react-is@^16.8.1:
+  version "16.12.0"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
 
 react-lifecycles-compat@^3, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
-react-native-branch@2.0.0-beta.3:
-  version "2.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-2.0.0-beta.3.tgz#2167af86bbc9f964bd45bd5f37684e5b54965e32"
+react-native-branch@2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-2.2.5.tgz#4074dd63b4973e6397d9ce50e97b57c77a518e9d"
 
 react-native-datepicker@^1.7.2:
   version "1.7.2"
@@ -5658,9 +5870,9 @@ react-native-easy-grid@0.1.17, react-native-easy-grid@^0.1.17:
   dependencies:
     lodash "^4.11.1"
 
-react-native-gesture-handler@1.0.0-alpha.41:
-  version "1.0.0-alpha.41"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.0.0-alpha.41.tgz#5667a1977ab148339ec2e7b0a94ad4b959cf09e5"
+react-native-gesture-handler@1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.0.6.tgz#8a672ca0c7a1b706dffee4e230e5cf0197d2cdb8"
   dependencies:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.2"
@@ -5691,6 +5903,10 @@ react-native-maps@0.21.0:
 react-native-orientation@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/react-native-orientation/-/react-native-orientation-3.1.3.tgz#d45803841fe94b6cce9acbe904fd5ca191a3711e"
+
+react-native-reanimated@1.0.0-alpha.6:
+  version "1.0.0-alpha.6"
+  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.0.0-alpha.6.tgz#169d23b3b39d1c88e509ddc97027b1c8cc066da8"
 
 react-native-responsive-dimensions@^1.0.2:
   version "1.0.2"
@@ -5724,6 +5940,12 @@ react-native-safe-module@^1.1.0:
   dependencies:
     dedent "^0.6.0"
 
+react-native-screens@^1.0.0-alpha.5:
+  version "1.0.0-alpha.23"
+  resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-1.0.0-alpha.23.tgz#25d7ea4d11bda4fcde2d1da7ae50271c6aa636e0"
+  dependencies:
+    debounce "^1.2.0"
+
 react-native-scripts@1.14.0:
   version "1.14.0"
   resolved "https://registry.yarnpkg.com/react-native-scripts/-/react-native-scripts-1.14.0.tgz#1c0a71ea2194a3889055c54458e32730f5cd1ccc"
@@ -5743,12 +5965,6 @@ react-native-scripts@1.14.0:
     qrcode-terminal "^0.11.0"
     rimraf "^2.6.1"
     xdl "48.1.4"
-
-react-native-svg-web@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-svg-web/-/react-native-svg-web-1.0.1.tgz#16e1784077b6e5b6c7ebd9c3829e6684211cba99"
-  dependencies:
-    prop-types "^15.5.10"
 
 react-native-svg@6.2.2:
   version "6.2.2"
@@ -5778,15 +5994,10 @@ react-native-vector-icons@4.5.0, react-native-vector-icons@~4.5.0:
     prop-types "^15.5.10"
     yargs "^8.0.2"
 
-react-native-web-maps@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-web-maps/-/react-native-web-maps-0.1.0.tgz#a5ead1e001376df2a3e3afbe49f057c4356f4315"
-  dependencies:
-    react-google-maps "^7.3.0"
-
-"react-native@https://github.com/expo/react-native/archive/sdk-27.0.2.tar.gz":
-  version "0.55.2"
-  resolved "https://github.com/expo/react-native/archive/sdk-27.0.2.tar.gz#4bc4f7d3e8b1b3afd017196e3ae54107c8a82f4a"
+"react-native@https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz":
+  version "0.55.4"
+  uid "17d148956ad91ab745fdca830ac3d193564fce5c"
+  resolved "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz#17d148956ad91ab745fdca830ac3d193564fce5c"
   dependencies:
     absolute-path "^0.0.0"
     art "^0.10.0"
@@ -5842,7 +6053,6 @@ react-native-web-maps@^0.1.0:
     serve-static "^1.13.1"
     shell-quote "1.6.1"
     stacktrace-parser "^0.1.3"
-    whatwg-fetch "^1.0.0"
     ws "^1.1.0"
     xcode "^0.9.1"
     xmldoc "^0.4.0"
@@ -5884,10 +6094,6 @@ react-navigation@^2.0.4:
     react-navigation-deprecated-tab-navigator "1.3.0"
     react-navigation-drawer "0.3.0"
     react-navigation-tabs "0.5.1"
-
-react-prop-types-element-of-type@2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/react-prop-types-element-of-type/-/react-prop-types-element-of-type-2.2.0.tgz#bcc332d3903c2259cf68c28a81c4a663faba59ac"
 
 react-proxy@^1.1.7:
   version "1.1.8"
@@ -6051,10 +6257,6 @@ regenerator-runtime@^0.10.5:
 regenerator-runtime@^0.11.0:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
-
-regenerator-runtime@^0.9.5:
-  version "0.9.6"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.9.6.tgz#d33eb95d0d2001a4be39659707c51b0cb71ce029"
 
 regenerator-transform@^0.10.0:
   version "0.10.1"
@@ -6281,7 +6483,7 @@ safe-buffer@5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
 
-safe-buffer@^5.0.1, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
+safe-buffer@5.1.2, safe-buffer@^5.0.1, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
 
@@ -6325,10 +6527,6 @@ sax@^1.2.4:
 sax@~1.1.1:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.1.6.tgz#5d616be8a5e607d54e114afae55b7eaf2fcc3240"
-
-scriptjs@2.5.8:
-  version "2.5.8"
-  resolved "https://registry.yarnpkg.com/scriptjs/-/scriptjs-2.5.8.tgz#d0c43955c2e6bad33b6e4edf7b53b8965aa7ca5f"
 
 "semver@2 || 3 || 4 || 5", semver@5.x, semver@^5.0.1, semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.4.1:
   version "5.5.0"
@@ -7046,6 +7244,10 @@ upper-case@^1.0.3, upper-case@^1.1.0, upper-case@^1.1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/upper-case/-/upper-case-1.1.3.tgz#f6b4501c2ec4cdd26ba78be7222961de77621598"
 
+uri-parser@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/uri-parser/-/uri-parser-1.0.1.tgz#3307ebb50f279c11198ad09214bdaf24e29735b2"
+
 urix@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
@@ -7053,6 +7255,10 @@ urix@^0.1.0:
 url-join@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/url-join/-/url-join-1.1.0.tgz#741c6c2f4596c4830d6718460920d0c92202dc78"
+
+url-join@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/url-join/-/url-join-4.0.1.tgz#b642e21a2646808ffa178c4c5fda39844e12cde7"
 
 url-parse-lax@^1.0.0:
   version "1.0.0"
@@ -7143,12 +7349,6 @@ walker@~1.0.5:
   dependencies:
     makeerror "1.0.x"
 
-warning@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
-  dependencies:
-    loose-envify "^1.0.0"
-
 watch@~0.18.0:
   version "0.18.0"
   resolved "https://registry.yarnpkg.com/watch/-/watch-0.18.0.tgz#28095476c6df7c90c963138990c0a5423eb4b986"
@@ -7166,13 +7366,9 @@ whatwg-encoding@^1.0.1, whatwg-encoding@^1.0.3:
   dependencies:
     iconv-lite "0.4.19"
 
-whatwg-fetch@>=0.10.0:
+whatwg-fetch@>=0.10.0, whatwg-fetch@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.4.tgz#dde6a5df315f9d39991aa17621853d720b85566f"
-
-whatwg-fetch@^1.0.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-1.1.1.tgz#ac3c9d39f320c6dce5339969d054ef43dd333319"
 
 whatwg-mimetype@^2.0.0, whatwg-mimetype@^2.1.0:
   version "2.1.0"
