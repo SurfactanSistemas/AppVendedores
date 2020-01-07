@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Dimensions, PixelRatio} from 'react-native';
+import { View, Dimensions, PixelRatio, FlatList} from 'react-native';
 import MenuHeaderButton from './MenuHeaderButton';
 import HeaderNav from './HeaderNav.js';
 import { Container, Text, Content, List, ListItem, Spinner, Icon, Header, Item, Input } from 'native-base';
@@ -49,10 +49,14 @@ const RenderVentas = ({item: {Datos: [Cliente]}, navigation}) => (
                 </Col>
             </Grid>
         </ListItem>
-        <List
+        {/* <List
             dataArray={Cliente.Datos}
             renderRow={(dato) => <RenderProducto producto={dato} navigation={navigation}/>}>
-        </List>
+        </List> */}
+        <FlatList
+            data={Cliente.Datos}
+            renderItem={({ item }) => <RenderProducto key={Math.random().toString()} producto={item} navigation={navigation} />}
+            keyExtractor={(e, i) => i.toString()}/>
     </View>
 )
 
@@ -167,6 +171,8 @@ export default class DetallesVentasProductos extends React.PureComponent{
         this.setState({itemsFiltrados: _itemsFiltrados});
     }
 
+    _KeyExtractor = () => Math.random().toString();
+
     render(){
         if (this.state.refrescando) return (
             <Container>
@@ -198,12 +204,16 @@ export default class DetallesVentasProductos extends React.PureComponent{
                     </View>
                 </Header>
                 <Content>
-                <List
+                {/* <List
                         dataArray={this.state.itemsFiltrados}
                         renderRow={(item) => <RenderVentas item={item} {...this.props}/> }
                     >
 
-                    </List>
+                    </List> */}
+                    <FlatList
+                        data={this.state.itemsFiltrados}
+                        renderItem={({ item, index }) => <RenderVentas key={index} item={item} {...this.props}/>}
+                        keyExtractor={this._KeyExtractor}/>
                 </Content>
             </Container>
         )

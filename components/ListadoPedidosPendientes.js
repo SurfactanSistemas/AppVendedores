@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Dimensions, StyleSheet, PixelRatio } from 'react-native';
+import { View, Dimensions, StyleSheet, PixelRatio, FlatList } from 'react-native';
 import MenuHeaderButton from './MenuHeaderButton';
 import HeaderNav from './HeaderNav.js';
 import { Container, Text, Content, List, ListItem, Spinner, CheckBox } from 'native-base';
@@ -10,9 +10,7 @@ import moment from 'moment';
 
 const LabelEncabezado = ({ texto, customStyles }) => (
     <Text style={[{ color: '#fff', fontSize: 14 / PixelRatio.getFontScale(), fontStyle: 'italic' }, customStyles]}>
-
         {texto}
-
     </Text>
 )
 
@@ -52,7 +50,7 @@ export default class ListadoPedidosPendientes extends React.Component {
     async componentDidMount() {
         this.ConsultarAniosPosibles();
         this._ReGenerarItems();
-        this.setState({ heightDevice: Dimensions.get('screen').height });
+        // this.setState({ heightDevice: Dimensions.get('screen').height });
     }
 
     ConsultarAniosPosibles() {
@@ -124,73 +122,77 @@ export default class ListadoPedidosPendientes extends React.Component {
 
     handleOnPressDetalles = (Pedido) => this.props.navigation.navigate('DetallesPedidoPendiente', { Pedido: Pedido });
 
-    RenderPedido = ({ Pedido, Fecha, FechaEntrega, CantProd, Autorizado }) => (
+    RenderPedido = ({item}) => {
+        let { Pedido, Fecha, FechaEntrega, CantProd, Autorizado } = item;
+        return (
+            <Row key={Pedido} onPress={() => this.handleOnPressDetalles(Pedido)} style={{ alignItems: 'center', borderBottomColor: '#aaa', borderBottomWidth: 0.5 }} >
+                <BloqueEncabezado
+                    size={3}
+                    content={
+                        <LabelEncabezado texto={Pedido} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
+                    } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
+                <BloqueEncabezado
+                    size={3}
+                    content={
+                        <LabelEncabezado texto={Fecha} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
+                    } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
+                <BloqueEncabezado
+                    size={3}
+                    content={
+                        <LabelEncabezado texto={FechaEntrega} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
+                    } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
+                <BloqueEncabezado
+                    size={3}
+                    content={
+                        <LabelEncabezado texto={CantProd} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
+                    } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
+            </Row>
+        );
+    }
 
-        <Row key={Pedido} onPress={() => this.handleOnPressDetalles(Pedido)} style={{ alignItems: 'center', borderBottomColor: '#aaa', borderBottomWidth: 0.5 }} >
-            <BloqueEncabezado
-                size={3}
-                content={
-                    <LabelEncabezado texto={Pedido} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
-                } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
-            <BloqueEncabezado
-                size={3}
-                content={
-                    <LabelEncabezado texto={Fecha} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
-                } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
-            <BloqueEncabezado
-                size={3}
-                content={
-                    <LabelEncabezado texto={FechaEntrega} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
-                } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
-            <BloqueEncabezado
-                size={3}
-                content={
-                    <LabelEncabezado texto={CantProd} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
-                } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
-        </Row>
-    )
+    RenderCliente = ({item}) => {
+        let { Cliente, Razon, Pedidos } = item;
+        return (
+            <Row key={Cliente} style={{ alignItems: 'center', borderBottomColor: '#ccc', borderBottomWidth: 0.5, marginBottom: 10 }} >
+                <Col>
+                    <Row>
+                        <BloqueEncabezado
+                            content={
+                                <LabelEncabezado texto={`( ${Cliente} )  ${Razon}`} customStyles={{ fontSize: 16  / PixelRatio.getFontScale(), color: '#fff' }} />
+                            } style={{ backgroundColor: Config.bgColorSecundario, paddingLeft: 15 }} />
+                    </Row>
+                    <Row style={{ borderBottomColor: '#aaa', borderBottomWidth: 0.5, marginBottom: 5, paddingVertical: 10, backgroundColor: '#ccc' }}>
+                        <Col size={3} style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
+                                Pedido
+                            </Text>
+                        </Col>
+                        <Col size={3} style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
+                                Fecha Pedido
+                            </Text>
+                        </Col>
+                        <Col size={3} style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
+                                Fecha Entrega
+                            </Text>
+                        </Col>
+                        <Col size={3} style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
+                                Cant. Prod.
+                            </Text>
+                        </Col>
+                    </Row>
+                    <FlatList
+                        data={Pedidos}
+                        renderItem={this.RenderPedido}
+                        keyExtractor={this._KeyExtractor}/>
+                </Col>
+            </Row>
+        );
+    } 
 
-    RenderCliente = ({ Cliente, Razon, Pedidos }) => (
-
-        <Row key={Cliente} style={{ alignItems: 'center', borderBottomColor: '#ccc', borderBottomWidth: 0.5, marginBottom: 10 }} >
-            <Col>
-                <Row>
-                    <BloqueEncabezado
-                        content={
-                            <LabelEncabezado texto={`( ${Cliente} )  ${Razon}`} customStyles={{ fontSize: 16  / PixelRatio.getFontScale(), color: '#fff' }} />
-                        } style={{ backgroundColor: Config.bgColorSecundario, paddingLeft: 15 }} />
-                </Row>
-                <Row style={{ borderBottomColor: '#aaa', borderBottomWidth: 0.5, marginBottom: 5, paddingVertical: 10, backgroundColor: '#ccc' }}>
-                    <Col size={3} style={{ justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
-                            Pedido
-                        </Text>
-                    </Col>
-                    <Col size={3} style={{ justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
-                            Fecha Pedido
-                        </Text>
-                    </Col>
-                    <Col size={3} style={{ justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
-                            Fecha Entrega
-                        </Text>
-                    </Col>
-                    <Col size={3} style={{ justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
-                            Cant. Prod.
-                        </Text>
-                    </Col>
-                </Row>
-                <List
-                    dataArray={Pedidos}
-                    renderRow={this.RenderPedido}>
-                </List>
-            </Col>
-        </Row>
-    )
-
-    RenderVendedor = item => (
+    RenderVendedor = (item) => (
         <View key={item.Vendedor}>
             <ListItem itemHeader key={item.Vendedor} style={{ backgroundColor: Config.bgColorSecundario, justifyContent: 'center', alignItems: 'center', borderBottomColor: '#ccc', borderBottomWidth: 0.5, flexDirection: 'column' }}>
                 <Text style={{ color: '#fff', fontSize: 20 / PixelRatio.getFontScale(), marginTop: 10 }}>{item.DescVendedor}</Text>
@@ -210,12 +212,10 @@ export default class ListadoPedidosPendientes extends React.Component {
                             onPress={() => this.setState({soloAutorizado: !this.state.soloAutorizado}, this._ReGenerarItems)}
                         />
                     </Row>
-                    <Row>
-                        <List
-                            dataArray={item.Datos}
-                            renderRow={this.RenderCliente}>
-                        </List>
-                    </Row>
+                        <FlatList
+                            data={item.Datos}
+                            renderItem={this.RenderCliente}
+                            keyExtractor={this._KeyExtractor}/>
                 </Col>
             </Grid>
         </View>
@@ -227,15 +227,23 @@ export default class ListadoPedidosPendientes extends React.Component {
         }
     }
 
+    _KeyExtractor = (item, index) => index.toString();
+
     render() {
         return (
             <Container style={{ backgroundColor: '#fff' }}>
                 <Content style={{ borderTopColor: '#ccc', borderTopWidth: 1 }}>
                     {
                         this.state.refrescando ? <Spinner /> :
+                        // <FlatList
+                        //     data={this.state.itemsFiltrados}
+                        //     extraData={this.state}
+                        //     renderItem={this.RenderVendedor}
+                        //     keyExtractor={this._KeyExtractor}/>
                         <List
                             dataArray={this.state.itemsFiltrados}
                             renderRow={this.RenderVendedor}
+                            keyExtractor={this._KeyExtractor}
                         />
                     }
                 </Content>

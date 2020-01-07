@@ -7,7 +7,8 @@ import Config from '../config/config.js';
 import _ from 'lodash';
 import { Grid, Col, Row } from 'react-native-easy-grid';
 
-export default class ListadoPrecios extends React.PureComponent{
+export default class ListadoPrecios extends React.
+Component{
     
     static navigationOptions = ({navigation}) => {
         return {
@@ -77,7 +78,7 @@ export default class ListadoPrecios extends React.PureComponent{
         });
     }
 
-    _KeyExtractor = (item) => item.Pedido + '';
+    _KeyExtractor = () => Math.random().toString();
 
     _handlePickAnio(val){
         this.setState({AnioConsulta: val, textFilter: '', primeraVez: true}, this._ReGenerarItems);
@@ -102,11 +103,11 @@ export default class ListadoPrecios extends React.PureComponent{
         this.setState({itemsFiltrados: _itemsFiltrados});
     }
 
-    RenderCliente = (item) => {
+    RenderCliente = ({ item }) => {
         return (
-             <ListItem key={item.Cliente} onPress={() => this.props.navigation.navigate('DetallesPreciosPorCliente', {Cliente: item.Cliente})}>
+             <ListItem key={item.Cliente}>
                 <Grid>
-                        <Row style={{ }}>
+                        <Row style={{ }}  onPress={() => {this.props.navigation.navigate('DetallesPreciosPorCliente', {Cliente: item.Cliente})}}>
                             <Col size={2} style={{ justifyContent: 'center' }}>
                                 <Text style={{fontSize: 10 / PixelRatio.getFontScale(), fontStyle: 'italic'}}>
                                     ({item.Cliente})
@@ -138,16 +139,22 @@ export default class ListadoPrecios extends React.PureComponent{
         ) 
      }
 
-    RenderClientes = (item) => {
+    RenderClientes = ({ item }) => {
         return (
             <View key={item.Vendedor}>
                 <ListItem itemHeader key={item.Vendedor} style={{backgroundColor: Config.bgColorSecundario, justifyContent: 'center', alignItems: 'center'}}>
                     <Text style={{color: '#fff', fontSize: 20 / PixelRatio.getFontScale(), marginTop: 10}}>{item.DesVendedor}</Text>
                 </ListItem>
-                <List
+                {/* <List
                     dataArray = {item.Datos} //{_.sortBy(item.Datos, ['DesCliente'])}
-                    renderRow = {this.RenderCliente}>
-                </List>
+                    renderRow = {this.RenderCliente}
+                    keyExtractor={this._KeyExtractor}>
+                </List> */}
+                <FlatList
+                    data={item.Datos}
+                    extraData={this.state}
+                    renderItem={this.RenderCliente}
+                    keyExtractor={this._KeyExtractor}/>
             </View>
         )
     }
@@ -176,11 +183,17 @@ export default class ListadoPrecios extends React.PureComponent{
                 </Header>
                 <Content>
                     {this.state.refrescando ? <Spinner color={Config.bgColorTerciario}/> : 
-                        <List
-                            dataArray={this.state.itemsFiltrados}
-                            renderRow={this.RenderClientes}
-                        >
-                        </List>
+                        // <List
+                        //     dataArray={this.state.itemsFiltrados}
+                        //     renderRow={this.RenderClientes}
+                        //     keyExtractor={this._KeyExtractor}
+                        // >
+                        // </List>
+                        <FlatList
+                            data={this.state.itemsFiltrados}
+                            extraData={this.state}
+                            renderItem={this.RenderClientes}
+                            keyExtractor={this._KeyExtractor}/>
                     }
                 </Content>
             </Container>

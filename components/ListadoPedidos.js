@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Dimensions, StyleSheet, TouchableOpacity, PixelRatio } from 'react-native';
+import { View, Dimensions, StyleSheet, TouchableOpacity, PixelRatio, FlatList } from 'react-native';
 import MenuHeaderButton from './MenuHeaderButton';
 import HeaderNav from './HeaderNav.js';
 import { Container, Text, Content, List, ListItem, Spinner, Icon, Header, Item, Input, Picker } from 'native-base';
@@ -148,8 +148,9 @@ export default class ListadoPedidos extends React.Component {
         </Row>
     )
 
-    RenderHojaRuta = item => (
-        <ListItem key={item.Cliente} style={{ marginLeft: 0, paddingHorizontal: 5, borderBottomColor: '#aaa', borderBottomWidth: 2 }}>
+    RenderHojaRuta = ({ item }) => (
+        // <ListItem key={item.Cliente} style={{ marginLeft: 0, paddingHorizontal: 5, borderBottomColor: '#aaa', borderBottomWidth: 2 }}>
+        <Row style={{ marginLeft: 0, marginTop: 5, paddingHorizontal: 2, borderBottomColor: '#aaa', borderBottomWidth: 1 }}>
             <Col>
                 <Row>
                     <BloqueEncabezado
@@ -195,24 +196,30 @@ export default class ListadoPedidos extends React.Component {
                             <LabelEncabezado texto='Cant. Items' customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#000' }} />
                         } style={styles.EncabezadoPedidos} />
                 </Row>
-                <Grid>
+                {/* <Grid> */}
                     {_.sortBy(item.Datos, 'Razon').map(this.RenderPedido)}
-                </Grid>
+                {/* </Grid> */}
             </Col>
-
-        </ListItem>
+        </Row>
+        //</ListItem>
     )
 
-    RenderVendedor = item => (
+    RenderVendedor = ({ item }) => (
         <View key={item.Vendedor}>
             <ListItem itemHeader key={item.Vendedor} style={{ backgroundColor: Config.bgColorSecundario, justifyContent: 'center' }}>
                 <Text style={{ color: '#fff', fontSize: 20 / PixelRatio.getFontScale(), marginTop: 10 }}>{item.DesVendedor}</Text>
             </ListItem>
             <Grid>
-                <List
+                {/* <List
                     dataArray={item.Datos}
                     renderRow={this.RenderHojaRuta}>
-                </List>
+                </List> */}
+                <Col>
+                    <FlatList
+                        data={item.Datos}
+                        renderItem={this.RenderHojaRuta}
+                        keyExtractor={this._KeyExtractor}/>
+                </Col>
             </Grid>
         </View>
     )
@@ -222,6 +229,8 @@ export default class ListadoPedidos extends React.Component {
             this.setState({ date: d }, this._ReGenerarItems)
         }
     }
+
+    _KeyExtractor = () => Math.random().toString();
 
     render() {
         return (
@@ -249,12 +258,10 @@ export default class ListadoPedidos extends React.Component {
                 </Header>
                 <Content style={{ borderTopColor: '#ccc', borderTopWidth: 1 }}>
                     {this.state.refrescando ? <Spinner /> :
-                        <List
-                            dataArray={this.state.itemsFiltrados}
-                            renderRow={this.RenderVendedor}
-                        >
-
-                        </List>}
+                        <FlatList
+                            data={this.state.itemsFiltrados}
+                            renderItem={this.RenderVendedor}
+                            keyExtractor={this._KeyExtractor}/>}
                 </Content>
             </Container>
         )
@@ -277,7 +284,7 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         borderBottomColor: '#eee',
         borderBottomWidth: 1,
-        paddingVertical: 10
+        // paddingVertical: 10
     },
     RenglonPedidos2: {
         backgroundColor: '#fff',

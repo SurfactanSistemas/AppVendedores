@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Dimensions, StyleSheet, PixelRatio } from 'react-native';
+import { View, Dimensions, StyleSheet, PixelRatio, FlatList } from 'react-native';
 import MenuHeaderButton from './MenuHeaderButton';
 import HeaderNav from './HeaderNav.js';
 import { Container, Text, Content, List, ListItem, Spinner, Icon, Header, Item, Input } from 'native-base';
@@ -145,7 +145,9 @@ export default class DetallePedido extends React.Component {
         </Row>
     )
 
-    RenderDetalles = ({ Pedido, Fecha, Cliente, Razon, Productos }) => (
+    _KeyExtractor = () => Math.random().toString();
+
+    RenderDetalles = ({item: { Pedido, Fecha, Cliente, Razon, Productos }}) => (
         <Grid>
             <Col>
                 <Row style={{ borderBottomColor: '#ccc', borderBottomWidth: 0.5, marginTop: 5 }}>
@@ -228,10 +230,16 @@ export default class DetallePedido extends React.Component {
                 </Header>
                 <Content style={{ borderTopColor: '#ccc', borderTopWidth: 1, paddingHorizontal: 5 }}>
                     {this.state.refrescando ? <Spinner /> :
-                        <List
-                            dataArray={this.state.itemsFiltrados}
-                            renderRow={this.RenderDetalles}
-                        /> }
+                        // <List
+                        //     dataArray={this.state.itemsFiltrados}
+                        //     renderRow={this.RenderDetalles}
+                        //     keyExtractor={this._KeyExtractor}
+                        // /> 
+                        <FlatList
+                            data={this.state.itemsFiltrados}
+                            renderItem={this.RenderDetalles}
+                            keyExtractor={this._KeyExtractor}/>
+                        }
                 </Content>
             </Container>
         )

@@ -19,7 +19,7 @@ export default class DetallesPedido extends React.PureComponent{
 		urlConsulta: ''
 	}
 
-	_KeyExtractor = (item, index) => index + '';
+	_KeyExtractor = (item, index) => Math.random().toString();
 
 	Row(texto, contenido, _fontSize = 20){
 		_fontSize /= PixelRatio.getFontScale();
@@ -140,9 +140,7 @@ export default class DetallesPedido extends React.PureComponent{
 												</Col>
 											)
 										}}
-									>
-
-									</List>
+									keyExtractor={this._KeyExtractor} />
 								</Col>
 							</Row>
 						</Grid>

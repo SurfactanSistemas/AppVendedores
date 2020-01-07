@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Dimensions, PixelRatio } from "react-native";
+import { View, Dimensions, PixelRatio, FlatList } from "react-native";
 import MenuHeaderButton from "./MenuHeaderButton";
 import HeaderNav from "./HeaderNav.js";
 import {
@@ -102,7 +102,7 @@ const RenderVendedor = ({ item, navigation, AnioConsulta }) => {
           {item.DesVendedor}
         </Text>
       </ListItem>
-      <List
+      {/* <List
         style={{ padding: 0 }}
         dataArray={item.Datos}
         renderRow={item => (
@@ -112,7 +112,11 @@ const RenderVendedor = ({ item, navigation, AnioConsulta }) => {
             navigation={navigation}
           />
         )}
-      />
+      /> */}
+      <FlatList
+        data={item.Datos}
+        renderItem={({ item, index }) => <RenderItem key={index} itemCliente={item} Anio={AnioConsulta} navigation={navigation} />}
+        keyExtractor={() => Math.random().toString()}/>
     </View>
   );
 };
@@ -188,7 +192,7 @@ export default class ListadoEstadisticas extends React.Component {
     );
   }
 
-  _KeyExtractor = (item, index) => item.Pedido + "";
+  _KeyExtractor = () => Math.random().toString();
 
   _handlePickAnio(val) {
     this.setState(
@@ -281,17 +285,20 @@ export default class ListadoEstadisticas extends React.Component {
           {this.state.refrescando ? (
             <Spinner color={Config.bgColorTerciario} />
           ) : (
-            <List
-              onLayout={this.onLayout}
-              dataArray={this.state.itemsFiltrados}
-              renderRow={item => (
-                <RenderVendedor
-                  item={item}
-                  AnioConsulta={this.state.AnioConsulta}
-                  {...this.props}
-                />
-              )}
-            />
+            // <List
+            //   dataArray={this.state.itemsFiltrados}
+            //   renderRow={item => (
+            //     <RenderVendedor
+            //       item={item}
+            //       AnioConsulta={this.state.AnioConsulta}
+            //       {...this.props}
+            //     />
+            //   )}
+            // />
+            <FlatList
+              data={this.state.itemsFiltrados}
+              renderItem={({item, index}) => <RenderVendedor key={index} item={item} AnioConsulta={this.state.AnioConsulta} {...this.props} />}
+              keyExtractor={this._KeyExtractor}/>
           )}
         </Content>
       </Container>

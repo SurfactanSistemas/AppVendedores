@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Dimensions, PixelRatio} from 'react-native';
+import { View, Dimensions, PixelRatio, FlatList} from 'react-native';
 import MenuHeaderButton from './MenuHeaderButton';
 import HeaderNav from './HeaderNav.js';
 import { Container, Text, Content, List, ListItem, Spinner, Icon, Header, Item, Input, Picker } from 'native-base';
@@ -90,7 +90,7 @@ export default class ListadoMuestras extends React.Component{
         })
     }
 
-    _KeyExtractor = (item, index) => item.Pedido + '';
+    _KeyExtractor = (item, index) => index.toString();
 
     _handlePickAnio = (val) => {
         this.setState({AnioConsulta: val, textFilter: '', primeraVez: true}, this._ReGenerarItems);
@@ -117,9 +117,10 @@ export default class ListadoMuestras extends React.Component{
 
     handleOnPressDetalles = (parameters) => this.props.navigation.navigate('Detalles', parameters); 
 
-    RenderCliente = itemCliente => (
-            <ListItem key={itemCliente.Cliente} onPress={() => this.handleOnPressDetalles({Cliente: itemCliente})}>
-                <View key={itemCliente.Cliente} style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+    RenderCliente = ({ item: itemCliente }) => {
+        return (
+            <ListItem key={Math.random()} onPress={() => this.handleOnPressDetalles({Cliente: itemCliente})}>
+                <View key={Math.random()} style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
 
                     <View style={{flexDirection: 'row'}}>
                         <Text style={{fontSize: 10 / PixelRatio.getFontScale(), fontStyle: 'italic'}}>
@@ -137,17 +138,22 @@ export default class ListadoMuestras extends React.Component{
                     </Text>
                 </View>
             </ListItem>
-    )
+        ); 
+    }
 
-    RenderVendedor = item => (
+    RenderVendedor = ({ item }) => (
         <View key={item.Vendedor}>
             <ListItem itemHeader key={item.Vendedor} style={{backgroundColor: Config.bgColorSecundario, justifyContent: 'center'}}>
                 <Text style={{color: '#fff', fontSize: 18 / PixelRatio.getFontScale(), marginTop: 10}}>{item.DesVendedor}</Text>
             </ListItem>
-            <List
+            <FlatList
+                data={item.Datos}
+                renderItem={this.RenderCliente}
+                keyExtractor={this._KeyExtractor}/>
+            {/* <List
                 dataArray={item.Datos}
                 renderRow={this.RenderCliente}>
-            </List>
+            </List> */}
         </View>
     )
 
@@ -181,12 +187,16 @@ export default class ListadoMuestras extends React.Component{
                 </Header>
                 <Content>
                     {this.state.refrescando ? <Spinner/> : 
-                    <List
-                        dataArray={this.state.itemsFiltrados}
-                        renderRow={this.RenderVendedor}
-                    >
+                    <FlatList
+                        data={this.state.itemsFiltrados}
+                        renderItem={this.RenderVendedor}
+                        keyExtractor={this._KeyExtractor}/>}
+                    {/* // <List
+                    //     dataArray={this.state.itemsFiltrados}
+                    //     renderRow={this.RenderVendedor}
+                    // >
 
-                    </List>}
+                    // </List>} */}
                 </Content>
             </Container>
         )
