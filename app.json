@@ -4,7 +4,7 @@
     "version": "0.1.0",
     "slug": "surfactan-vendedores",
     "icon": "./assets/img/icon.png",
-    "sdkVersion": "34.0.0",
+    "sdkVersion": "35.0.0",
     "ios": {
       "bundleIdentifier": "com.ferreyra.surfactanvendedores"
     },
