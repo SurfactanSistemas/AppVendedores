@@ -9,9 +9,9 @@ import _ from 'lodash';
 import moment from 'moment';
 
 const LabelEncabezado = ({ texto, customStyles }) => (
-    <Text style={[{ color: '#fff', fontSize: 14 / PixelRatio.getFontScale(), fontStyle: 'italic' }, customStyles]}>
+    <Text style={[{ color: '#fff', fontSize: 12 / PixelRatio.getFontScale(), fontStyle: 'italic' }, customStyles]}>
 
-        {texto}
+        {`${texto.toString().padEnd(25, ' ').slice(0, 26).trim()}`}
 
     </Text>
 )
@@ -134,22 +134,22 @@ export default class DetallePedidoPendiente extends React.Component {
             <BloqueEncabezado
                 size={3}
                 content={
-                    <LabelEncabezado texto={DescProducto} customStyles={{ fontSize: 10 / PixelRatio.getFontScale(), color: '#000' }} />
+                    <LabelEncabezado texto={DescProducto} customStyles={{ fontSize: 8 / PixelRatio.getFontScale(), color: '#000' }} />
                 } style={styles.RenglonPedidos2} />
             <BloqueEncabezado
                 size={2}
                 content={
-                    <LabelEncabezado texto={parseFloat(Cantidad).toFixed(2)} customStyles={{ fontSize: 10 / PixelRatio.getFontScale(), color: '#000' }} />
+                    <LabelEncabezado texto={parseFloat(Cantidad).toFixed(2)} customStyles={{ fontSize: 9 / PixelRatio.getFontScale(), color: '#000' }} />
                 } style={styles.RenglonPedidos} />
             <BloqueEncabezado
                 size={2}
                 content={
-                    <LabelEncabezado texto={parseFloat(Facturado).toFixed(2)} customStyles={{ fontSize: 10 / PixelRatio.getFontScale(), color: '#000' }} />
+                    <LabelEncabezado texto={parseFloat(Facturado).toFixed(2)} customStyles={{ fontSize: 9 / PixelRatio.getFontScale(), color: '#000' }} />
                 } style={styles.RenglonPedidos} />
             <BloqueEncabezado
                 size={2}
                 content={
-                    <LabelEncabezado texto={parseFloat(Cantidad - Facturado).toFixed(2)} customStyles={{ fontSize: 10 / PixelRatio.getFontScale(), color: '#000' }} />
+                    <LabelEncabezado texto={parseFloat(Cantidad - Facturado).toFixed(2)} customStyles={{ fontSize: 9 / PixelRatio.getFontScale(), color: '#000' }} />
                 } style={styles.RenglonPedidos} />
         </Row>
     )
@@ -161,7 +161,7 @@ export default class DetallePedidoPendiente extends React.Component {
                     <BloqueEncabezado
                         size={2}
                         content={
-                            <LabelEncabezado texto='Nro' />
+                            <LabelEncabezado texto='Nro'/>
                         } style={{ alignItems: 'center' }} />
                     <BloqueEncabezado
                         size={2}
@@ -169,63 +169,63 @@ export default class DetallePedidoPendiente extends React.Component {
                             <LabelEncabezado texto={Pedido} customStyles={{ fontSize: 12 / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
                         } style={{ backgroundColor: Autorizado === 'N' ? 'red' : '#fff' }} />
                     <BloqueEncabezado
-                        size={3}
-                        content={
-                            <LabelEncabezado texto='Cliente' />
-                        } style={{ alignItems: 'center' }} />
-                    <BloqueEncabezado
-                        size={5}
-                        content={
-                            <LabelEncabezado texto={`( ${Cliente} )  ${Razon}`} customStyles={{ fontSize: 12 / PixelRatio.getFontScale(), color: '#000', fontWeight: 'bold' }} />
-                        }  style={{ backgroundColor: '#fff', alignItems: 'flex-start' }}  />
-                </Row>
-                <Row>
-                    <BloqueEncabezado
                         size={2}
                         content={
                             <LabelEncabezado texto='Fecha' />
                         } style={{ alignItems: 'center' }} />    
                     <BloqueEncabezado
-                        size={4}
-                        content={
-                            <LabelEncabezado texto={Fecha} customStyles={{ fontSize: 12 / PixelRatio.getFontScale(), color: '#000' }} />
-                        } style={{ backgroundColor: '#fff' }} />
-                    <BloqueEncabezado
                         size={2}
                         content={
-                            <LabelEncabezado texto='Ent.' />
-                        } style={{ alignItems: 'center' }} />
-                    <BloqueEncabezado
-                        size={4}
-                        content={
-                            <LabelEncabezado texto={FechaEntrega} customStyles={{ fontSize: 12 / PixelRatio.getFontScale(), color: '#000' }} />
+                            <LabelEncabezado texto={Fecha} customStyles={{ fontSize: 10 / PixelRatio.getFontScale(), color: '#000' }} />
                         } style={{ backgroundColor: '#fff' }} />
                 </Row>
-                <Row style={{marginTop: 10}}>
+                <Row>
+                    <BloqueEncabezado
+                        size={1}
+                        content={
+                            <LabelEncabezado texto='Clte' customStyles={{ fontSize: 10 / PixelRatio.getFontScale() }} />
+                        } style={{ alignItems: 'center' }} />
+                    <BloqueEncabezado
+                        size={7}
+                        content={
+                            <LabelEncabezado texto={`${Cliente}  ${Razon}`} customStyles={{ fontSize: 9 / PixelRatio.getFontScale(), color: '#000', fontWeight: 'bold' }} />
+                        }  style={{ backgroundColor: '#fff', alignItems: 'flex-start' }}  />
+                    <BloqueEncabezado
+                        size={1}
+                        content={
+                            <LabelEncabezado texto='Ent.' customStyles={{ fontSize: 10 / PixelRatio.getFontScale() }} />
+                        } style={{ alignItems: 'center' }} />
                     <BloqueEncabezado
                         size={3}
                         content={
-                            <LabelEncabezado texto='Producto' customStyles={{ fontSize: 11 / PixelRatio.getFontScale(), color: '#000' }} />
+                            <LabelEncabezado texto={FechaEntrega} customStyles={{ fontSize: 9 / PixelRatio.getFontScale(), color: '#000' }} />
+                        } style={{ backgroundColor: '#fff' }} />
+                </Row>
+                <Row style={{marginTop: 5}}>
+                    <BloqueEncabezado
+                        size={3}
+                        content={
+                            <LabelEncabezado texto='Producto' customStyles={{ fontSize: 10 / PixelRatio.getFontScale(), color: '#000' }} />
                         } style={styles.EncabezadoPedidos} />
                     <BloqueEncabezado
                         size={3}
                         content={
-                            <LabelEncabezado texto='Descripción' customStyles={{ fontSize: 11 / PixelRatio.getFontScale(), color: '#000' }} />
+                            <LabelEncabezado texto='Descripción' customStyles={{ fontSize: 10 / PixelRatio.getFontScale(), color: '#000' }} />
                         } style={styles.EncabezadoPedidos} />
                     <BloqueEncabezado
                         size={2}
                         content={
-                            <LabelEncabezado texto='Cant.' customStyles={{ fontSize: 13 / PixelRatio.getFontScale(), color: '#000' }} />
+                            <LabelEncabezado texto='Cant.' customStyles={{ fontSize: 11 / PixelRatio.getFontScale(), color: '#000' }} />
                         } style={styles.EncabezadoPedidos} />
                     <BloqueEncabezado
                         size={2}
                         content={
-                            <LabelEncabezado texto='Fact.' customStyles={{ fontSize: 13 / PixelRatio.getFontScale(), color: '#000' }} />
+                            <LabelEncabezado texto='Fact.' customStyles={{ fontSize: 11 / PixelRatio.getFontScale(), color: '#000' }} />
                         } style={styles.EncabezadoPedidos} />
                     <BloqueEncabezado
                         size={2}
                         content={
-                            <LabelEncabezado texto='Saldo' customStyles={{ fontSize: 11 / PixelRatio.getFontScale(), color: '#000' }} />
+                            <LabelEncabezado texto='Saldo' customStyles={{ fontSize: 10 / PixelRatio.getFontScale(), color: '#000' }} />
                         } style={styles.EncabezadoPedidos} />
                 </Row>
                 <Grid>
@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
     },
     RenglonPedidos: {
         backgroundColor: '#fff',
-        paddingHorizontal: 5,
+        paddingHorizontal: 2,
         paddingVertical: 5,
         borderBottomColor: '#eee',
         borderBottomWidth: 1,

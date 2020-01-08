@@ -10,9 +10,9 @@ import _ from 'lodash';
 import moment from 'moment';
 
 const LabelEncabezado = ({ texto, customStyles }) => (
-    <Text style={[{ color: '#fff', fontSize: 14 / PixelRatio.getFontScale(), fontStyle: 'italic' }, customStyles]}>
+    <Text style={[{ color: '#fff', fontSize: 12 / PixelRatio.getFontScale(), fontStyle: 'italic' }, customStyles]}>
 
-        {texto}
+        {texto.toString().padEnd(20, ' ').slice(0, 21).trim()}
 
     </Text>
 )
@@ -128,22 +128,22 @@ export default class ListadoPedidos extends React.Component {
             <BloqueEncabezado
                 size={2}
                 content={
-                    <LabelEncabezado texto={Pedido} customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#000' }} />
+                    <LabelEncabezado texto={Pedido} customStyles={{ fontSize: 11  / PixelRatio.getFontScale(), color: '#000' }} />
                 } style={styles.RenglonPedidos} />
             <BloqueEncabezado
                 size={2}
                 content={
-                    <LabelEncabezado texto={Cliente} customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#000' }} />
+                    <LabelEncabezado texto={Cliente} customStyles={{ fontSize: 11  / PixelRatio.getFontScale(), color: '#000' }} />
                 } style={styles.RenglonPedidos} />
             <BloqueEncabezado
                 size={6}
                 content={
-                    <LabelEncabezado texto={Razon} customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#000' }} />
+                    <LabelEncabezado texto={Razon} customStyles={{ fontSize: 11  / PixelRatio.getFontScale(), color: '#000' }} />
                 } style={styles.RenglonPedidos2} />
             <BloqueEncabezado
                 size={2}
                 content={
-                    <LabelEncabezado texto={CantItems} customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#000' }} />
+                    <LabelEncabezado texto={CantItems} customStyles={{ fontSize: 11  / PixelRatio.getFontScale(), color: '#000' }} />
                 } style={styles.RenglonPedidos} />
         </Row>
     )
@@ -161,7 +161,7 @@ export default class ListadoPedidos extends React.Component {
                     <BloqueEncabezado
                         size={4}
                         content={
-                            <LabelEncabezado texto={item.HojaRuta} customStyles={{ fontSize: 20 / PixelRatio.getFontScale(), color: '#000' }} />
+                            <LabelEncabezado texto={item.HojaRuta} customStyles={{ fontSize: 18 / PixelRatio.getFontScale(), color: '#000' }} />
                         } style={{ backgroundColor: '#fff' }} />
                     {/* <BloqueEncabezado
                         size={2}
@@ -178,22 +178,22 @@ export default class ListadoPedidos extends React.Component {
                     <BloqueEncabezado
                         size={2}
                         content={
-                            <LabelEncabezado texto='Pedido' customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#000' }} />
+                            <LabelEncabezado texto='Pedido' customStyles={{ fontSize: 11  / PixelRatio.getFontScale(), color: '#000' }} />
                         } style={styles.EncabezadoPedidos} />
                     <BloqueEncabezado
                         size={2}
                         content={
-                            <LabelEncabezado texto='Cliente' customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#000' }} />
+                            <LabelEncabezado texto='Cliente' customStyles={{ fontSize: 11  / PixelRatio.getFontScale(), color: '#000' }} />
                         } style={styles.EncabezadoPedidos} />
                     <BloqueEncabezado
                         size={6}
                         content={
-                            <LabelEncabezado texto='Razón' customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#000' }} />
+                            <LabelEncabezado texto='Razón' customStyles={{ fontSize: 11  / PixelRatio.getFontScale(), color: '#000' }} />
                         } style={styles.EncabezadoPedidos} />
                     <BloqueEncabezado
                         size={2}
                         content={
-                            <LabelEncabezado texto='Cant. Items' customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#000' }} />
+                            <LabelEncabezado texto='Cant. Items' customStyles={{ fontSize: 11  / PixelRatio.getFontScale(), color: '#000' }} />
                         } style={styles.EncabezadoPedidos} />
                 </Row>
                 {/* <Grid> */}

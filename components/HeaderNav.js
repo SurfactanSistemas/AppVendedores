@@ -43,13 +43,13 @@ export default class HeaderNav extends React.PureComponent {
 const styles = StyleSheet.create({ 
     titulo: {
         fontWeight: 'bold',
-        fontSize: 20  / PixelRatio.getFontScale(),
+        fontSize: 17  / PixelRatio.getFontScale(),
         color: '#FFF',
         flex: 1,
     },
     tituloSecundario: {
         // fontWeight: 'bold',
-        fontSize: 15 / PixelRatio.getFontScale(),
+        fontSize: 13 / PixelRatio.getFontScale(),
         color: '#FFF',
         flex: 1,
         // textAlign: 'center',

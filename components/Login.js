@@ -4,6 +4,7 @@ import Config from '../config/config.js';
 import { Container, Text, Content, Form, Item, Input, Icon, Button, Spinner } from 'native-base';
 import { Grid, Col, Row } from 'react-native-easy-grid';
 import { responsiveWidth } from 'react-native-responsive-dimensions';
+import * as Font from 'expo-font';
 
 const MSG_CLAVE_ERRONEA = 'La clave indicada no es una cláve válida. Vuela a intentar.';
 
@@ -25,12 +26,20 @@ export default class DetallesPedido extends React.PureComponent {
             showError: false,
             msgError: '',
             tamanioWidth: 0, //Dimensions.get('window').width,
-            fontLoaded: true,
+            fontLoaded: false,
             Sending: false
         };
     }
 
+    async componentDidMount(){
+        await Font.loadAsync({
+                    'Roboto': require('../node_modules/native-base/Fonts/Roboto.ttf'),
+                    'Roboto_medium': require('../node_modules/native-base/Fonts/Roboto_medium.ttf'),
+                    //'Ionicons': require('../node_modules/@expo/vector-icons/fonts/Ionicons.ttf'),
+                });
 
+        this.setState({ fontLoaded: true });
+    }
 
     handleChangeDimensions = (dims) => {
         const value = dims.height > dims.width ? dims.width : dims.height;
@@ -39,15 +48,8 @@ export default class DetallesPedido extends React.PureComponent {
     }
 
     async componentWillMount() {
-        await Expo.Font.loadAsync({
-            'Roboto': require('native-base/Fonts/Roboto.ttf'),
-            'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
-            'Ionicons': require('@expo/vector-icons/fonts/Ionicons.ttf'),
-        });
-
+        
         global.idVendedor = -1;
-
-        this.setState({ fontLoaded: false });
 
         let { width, height } = Dimensions.get('window');
         this.handleChangeDimensions({ width: width, height: height });
@@ -88,7 +90,7 @@ export default class DetallesPedido extends React.PureComponent {
         return (<Spinner color={Config.bgColor} />);
     }
     render() {
-        if (this.state.fontLoaded) {
+        if (!this.state.fontLoaded) {
             return (<Spinner />)
         }
         return (

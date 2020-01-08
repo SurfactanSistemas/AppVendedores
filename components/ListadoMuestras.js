@@ -126,8 +126,8 @@ export default class ListadoMuestras extends React.Component{
                         <Text style={{fontSize: 10 / PixelRatio.getFontScale(), fontStyle: 'italic'}}>
                             ({itemCliente.Cliente})
                         </Text>
-                        <Text style={{marginLeft: 10, maxWidth: 220, fontSize: 15 / PixelRatio.getFontScale() }}>
-                            {itemCliente.Razon}
+                        <Text style={{marginLeft: 10, maxWidth: 220, fontSize: 13 / PixelRatio.getFontScale() }}>
+                            {itemCliente.Razon.toString().padEnd(20, ' ').slice(0, 22).trim()}
                         </Text>
                     </View>
                     

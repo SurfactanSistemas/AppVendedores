@@ -21,7 +21,7 @@ const RenderProducto = ({producto, navigation}) => (
                 </Col>
                 <Col size={7} style={{alignItems: 'flex-start', justifyContent: 'center'}}>
                     <View style={{maxWidth: 230}}>
-                        <Text style={{ fontSize: 20 / PixelRatio.getFontScale() }}>
+                        <Text style={{ fontSize: 13 / PixelRatio.getFontScale() }}>
                             {producto.Datos[0].DesTerminado}
                         </Text>
                     </View>

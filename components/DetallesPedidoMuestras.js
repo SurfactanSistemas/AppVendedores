@@ -48,7 +48,7 @@ export default class DetallesPedido extends React.PureComponent{
 						<Grid>
 							<Row size={1}>
 								<Col style={{backgroundColor: Config.bgColorSecundario}}>
-									<Row style={{alignItems: 'center', justifyContent: 'center', padding: 10}}>
+									<Row style={{alignItems: 'center', justifyContent: 'center', padding: 5}}>
 										<Text style={{fontWeight: 'bold', color: '#fff', fontSize: 20 / PixelRatio.getFontScale(), textAlign: 'center'}}>{Cliente.Razon}</Text>
 									</Row>
 									<Row style={{alignItems: 'center', justifyContent: 'center'}}>
@@ -56,7 +56,7 @@ export default class DetallesPedido extends React.PureComponent{
 									</Row>
 								</Col>
 							</Row>
-							<Row size={6} style={{ paddingHorizontal: responsiveWidth(2) }} >
+							<Row size={6} style={{ paddingHorizontal: responsiveWidth(1) }} >
 								<Col>
 									<List
 										dataArray={Cliente.Datos}
@@ -70,21 +70,21 @@ export default class DetallesPedido extends React.PureComponent{
 													
 														
 														{/* Encabezado */}
-														<Row size={1} style={{backgroundColor: Config.bgColorTerciario, height: 60, marginTop: 20,  borderTopColor: '#eee', borderTopWidth: 2, borderBottomColor: '#eee', borderBottomWidth: 2}}>
+														<Row size={1} style={{backgroundColor: Config.bgColorTerciario, height: 60, marginTop: 5,  borderTopColor: '#eee', borderTopWidth: 2, borderBottomColor: '#eee', borderBottomWidth: 2}}>
 															<Col size={1} style={{justifyContent: 'center', alignItems: 'center'}}>
-																<Text style={{color: '#fff', fontSize: 15 / PixelRatio.getFontScale(), fontWeight: 'bold'}}> Pedido</Text>
+																<Text style={{color: '#fff', fontSize: 13 / PixelRatio.getFontScale(), fontWeight: 'bold'}}> Pedido</Text>
 															</Col>
 															<Col size={2} style={{justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff'}}>
-																<Text>{Pedido.Pedido}</Text>
+																<Text style={{fontSize: 15 / PixelRatio.getFontScale()}}>{Pedido.Pedido}</Text>
 															</Col>
 														</Row>
 														<Row size={1} style={{backgroundColor: Config.bgColorTerciario, height: 40, borderBottomColor: '#eee', borderBottomWidth: 2}}>
 															<Col size={1} style={{justifyContent: 'center', alignItems: 'center'}}>
-																<Text style={{color: '#fff', fontSize: 15 / PixelRatio.getFontScale(), fontWeight: 'bold'}}>Estado</Text>
+																<Text style={{color: '#fff', fontSize: 13 / PixelRatio.getFontScale(), fontWeight: 'bold'}}>Estado</Text>
 															</Col>
 															{ this.RenderEstado(Remito) }
 															<Col size={1} style={{justifyContent: 'center', alignItems: 'center'}}>
-																<Text style={{color: '#fff', fontSize: 15 / PixelRatio.getFontScale(), fontWeight: 'bold'}}>Fecha:</Text>
+																<Text style={{color: '#fff', fontSize: 13 / PixelRatio.getFontScale(), fontWeight: 'bold'}}>Fecha:</Text>
 															</Col>
 															<Col size={2} style={{justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff'}}>
 																<Text style={{ fontSize: 12 / PixelRatio.getFontScale() }} >{Fecha}</Text>
@@ -101,13 +101,13 @@ export default class DetallesPedido extends React.PureComponent{
 															<Col>
 																<Row style={{backgroundColor: Config.bgColorTerciario, paddingVertical: 10}}>
 																	<Col size={1} style={{justifyContent: 'center', alignItems: 'center'}}>
-																		<Text style={{fontSize: 13 / PixelRatio.getFontScale(), color: '#fff', fontWeight: 'bold'}}>Codigo</Text>
+																		<Text style={{fontSize: 11 / PixelRatio.getFontScale(), color: '#fff', fontWeight: 'bold'}}>Código</Text>
 																	</Col>
 																	<Col size={3} style={{justifyContent: 'center', alignItems: 'center'}}>
-																		<Text style={{fontSize: 13 / PixelRatio.getFontScale(), color: '#fff', fontWeight: 'bold'}}>Descripción</Text>
+																		<Text style={{fontSize: 11 / PixelRatio.getFontScale(), color: '#fff', fontWeight: 'bold'}}>Descripción</Text>
 																	</Col>
 																	<Col size={1} style={{justifyContent: 'center', alignItems: 'center'}}>
-																		<Text style={{fontSize: 12 / PixelRatio.getFontScale(), color: '#fff', fontWeight: 'bold'}}>Kgs</Text>
+																		<Text style={{fontSize: 10 / PixelRatio.getFontScale(), color: '#fff', fontWeight: 'bold'}}>Kgs</Text>
 																	</Col>
 																</Row>
 																{Productos.map((producto) => {
@@ -118,13 +118,13 @@ export default class DetallesPedido extends React.PureComponent{
 																	};
 
 																	return (
-																		<TouchableHighlight  key={producto.Codigo} onPress={() => {this.props.navigation.navigate('Observaciones', DatosClienteObservaciones)}}>
+																		<TouchableHighlight  key={Math.random()} onPress={() => {this.props.navigation.navigate('Observaciones', DatosClienteObservaciones)}}>
 																			<Row key={producto.Codigo} style={{backgroundColor: '#eee', padding: 10, borderBottomColor: '#aaa', borderBottomWidth: 1}}>
 																				<Col size={1} style={{minWidth: 30, justifyContent: 'center'}}>
-																					<Text style={{fontSize: 12 / PixelRatio.getFontScale()}}>({producto.Codigo})</Text>
+																					<Text style={{fontSize: 10 / PixelRatio.getFontScale()}}>({producto.Codigo})</Text>
 																				</Col>
 																				<Col size={3} style={{paddingLeft: 5, justifyContent: 'center'}}>
-																					<Text style={{ fontSize: 15 / PixelRatio.getFontScale() }} >{producto.Descripcion}</Text>
+																					<Text style={{ fontSize: 13 / PixelRatio.getFontScale() }} >{producto.Descripcion}</Text>
 																				</Col>
 																				<Col size={1} style={{ justifyContent: 'center' }} >
 																					<Text style={{textAlign: 'right', paddingRight: 5}}>{producto.Cantidad}</Text>

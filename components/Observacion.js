@@ -86,14 +86,14 @@ export default class Observacion extends React.PureComponent {
 
     ContenidoBoton(){
         if (this.state.Sending) return (<Spinner color={Config.bgColorSecundario} />);
-        return (<Text style={{ fontSize: 13 / PixelRatio.getFontScale() }} >Grabar</Text>);
+        return (<Text style={{ fontSize: 11 / PixelRatio.getFontScale() }} >Grabar</Text>);
     }
     render(){
         if (this.state.loading) return (<View><Spinner/></View>);
 
         return (
             <ScrollView>
-                <Container style={{flex: 1, backgroundColor: '#eee', paddingHorizontal: responsiveWidth(2), minHeight: 300}}>
+                <Container style={{flex: 1, backgroundColor: '#eee', paddingHorizontal: responsiveWidth(1), minHeight: 300}}>
                     <Grid style={{ minHeight: 400 }} >
                         <Col>
                             <Row size={1} style={{justifyContent: 'center', alignItems: 'center', backgroundColor: Config.bgColorSecundario}}>
@@ -101,30 +101,30 @@ export default class Observacion extends React.PureComponent {
                                     OBSERVACIONES
                                 </Text>
                             </Row>
-                            <Row size={1} style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10}}>
+                            <Row size={1} style={{ justifyContent: 'center', alignItems: 'center', marginTop: 2}}>
                                 <Col size={1}  style={[{ paddingVertical: 5, alignItems: 'center', borderTopColor: '#ccc', borderTopWidth: 1,backgroundColor: Config.bgColorSecundario, justifyContent: 'center', alignItems: 'center' }]}>
-                                    <Text style={[styles.WhiteText, {fontSize: 15 / PixelRatio.getFontScale()}]} >Cliente</Text>
+                                    <Text style={[styles.WhiteText, {fontSize: 12 / PixelRatio.getFontScale()}]} >Cliente</Text>
                                 </Col>
                                 <Col size={2} style={{  paddingVertical: 5, alignItems: 'center',backgroundColor: '#fff' }}>
-                                    <Text style={{ fontSize: 13 / PixelRatio.getFontScale() }}>
-                                        {this.Cliente}
+                                    <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
+                                        {this.Cliente.toString().padEnd(21, ' ').slice(0, 22).trim()}
                                     </Text>
                                 </Col>
                             </Row>
                             <Row size={1} style={{justifyContent: 'center', alignItems: 'center'}}>
                                 <Col size={3}  style={[{ paddingVertical: 5, alignItems: 'center', borderTopColor: '#ccc', borderTopWidth: 1,backgroundColor: Config.bgColorSecundario, justifyContent: 'center', alignItems: 'center' }]}>
-                                    <Text style={[styles.WhiteText, {fontSize: 15 / PixelRatio.getFontScale()}]} >Producto</Text>
+                                    <Text style={[styles.WhiteText, {fontSize: 12 / PixelRatio.getFontScale()}]} >Producto</Text>
                                 </Col>
                                 <Col size={3} style={{ paddingVertical: 5, alignItems: 'center', backgroundColor: '#fff' }}>
-                                    <Text style={{ fontSize: 13 / PixelRatio.getFontScale() }}>
+                                    <Text style={{ fontSize: 11 / PixelRatio.getFontScale() }}>
                                         {this.Producto}
                                     </Text>
                                 </Col>
                                 <Col size={3}  style={[{ paddingVertical: 5, alignItems: 'center', borderTopColor: '#ccc', borderTopWidth: 1,backgroundColor: Config.bgColorSecundario, justifyContent: 'center', alignItems: 'center' }]}>
-                                    <Text style={[styles.WhiteText, {fontSize: 15 / PixelRatio.getFontScale()}]} >Pedido</Text>
+                                    <Text style={[styles.WhiteText, {fontSize: 12 / PixelRatio.getFontScale()}]} >Pedido</Text>
                                 </Col>
                                 <Col size={3} style={{ paddingVertical: 5, alignItems: 'center', backgroundColor: '#fff' }}>
-                                    <Text style={{ fontSize: 13 / PixelRatio.getFontScale() }}>
+                                    <Text style={{ fontSize: 11 / PixelRatio.getFontScale() }}>
                                         {this.Pedido}
                                     </Text>
                                 </Col>
@@ -139,11 +139,11 @@ export default class Observacion extends React.PureComponent {
                                         </Col>
                                     </Row>
                                     <Row size={4} style={{ marginTop: 10, marginBottom: 20, justifyContent: 'space-around' }}>
-                                        <Button block title="" onPress={this.handleOnPress.bind(this)} disabled={this.state.Sending} style={{ maxWidth: 200 }}>
+                                        <Button block title="" onPress={this.handleOnPress.bind(this)} disabled={this.state.Sending} style={{ minWidth: 200 }}>
                                             {this.ContenidoBoton()}
                                         </Button>
-                                        <Button block title="" warning onPress={this.goBack} style={{ maxWidth: 200 }}>
-                                            <Text style={{ fontSize: 13 / PixelRatio.getFontScale() }}>Cancelar</Text>
+                                        <Button block title="" warning onPress={this.goBack} style={{ minWidth: 200 }}>
+                                            <Text style={{ fontSize: 11 / PixelRatio.getFontScale() }}>Cancelar</Text>
                                         </Button>
                                     </Row>
                                 </Col>

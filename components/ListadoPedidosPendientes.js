@@ -129,22 +129,22 @@ export default class ListadoPedidosPendientes extends React.Component {
                 <BloqueEncabezado
                     size={3}
                     content={
-                        <LabelEncabezado texto={Pedido} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
+                        <LabelEncabezado texto={Pedido} customStyles={{ fontSize: 10  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
                     } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
                 <BloqueEncabezado
                     size={3}
                     content={
-                        <LabelEncabezado texto={Fecha} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
+                        <LabelEncabezado texto={Fecha} customStyles={{ fontSize: 10  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
                     } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
                 <BloqueEncabezado
                     size={3}
                     content={
-                        <LabelEncabezado texto={FechaEntrega} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
+                        <LabelEncabezado texto={FechaEntrega} customStyles={{ fontSize: 10  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
                     } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
                 <BloqueEncabezado
                     size={3}
                     content={
-                        <LabelEncabezado texto={CantProd} customStyles={{ fontSize: 12  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
+                        <LabelEncabezado texto={CantProd} customStyles={{ fontSize: 10  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
                     } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
             </Row>
         );
@@ -158,27 +158,27 @@ export default class ListadoPedidosPendientes extends React.Component {
                     <Row>
                         <BloqueEncabezado
                             content={
-                                <LabelEncabezado texto={`( ${Cliente} )  ${Razon}`} customStyles={{ fontSize: 16  / PixelRatio.getFontScale(), color: '#fff' }} />
+                                <LabelEncabezado texto={`( ${Cliente} )  ${Razon}`} customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#fff' }} />
                             } style={{ backgroundColor: Config.bgColorSecundario, paddingLeft: 15 }} />
                     </Row>
                     <Row style={{ borderBottomColor: '#aaa', borderBottomWidth: 0.5, marginBottom: 5, paddingVertical: 10, backgroundColor: '#ccc' }}>
                         <Col size={3} style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
+                            <Text style={{ fontSize: 10 / PixelRatio.getFontScale() }}>
                                 Pedido
                             </Text>
                         </Col>
                         <Col size={3} style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
+                            <Text style={{ fontSize: 10 / PixelRatio.getFontScale() }}>
                                 Fecha Pedido
                             </Text>
                         </Col>
                         <Col size={3} style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
+                            <Text style={{ fontSize: 10 / PixelRatio.getFontScale() }}>
                                 Fecha Entrega
                             </Text>
                         </Col>
                         <Col size={3} style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 12 / PixelRatio.getFontScale() }}>
+                            <Text style={{ fontSize: 10 / PixelRatio.getFontScale() }}>
                                 Cant. Prod.
                             </Text>
                         </Col>
@@ -195,11 +195,11 @@ export default class ListadoPedidosPendientes extends React.Component {
     RenderVendedor = (item) => (
         <View key={item.Vendedor}>
             <ListItem itemHeader key={item.Vendedor} style={{ backgroundColor: Config.bgColorSecundario, justifyContent: 'center', alignItems: 'center', borderBottomColor: '#ccc', borderBottomWidth: 0.5, flexDirection: 'column' }}>
-                <Text style={{ color: '#fff', fontSize: 20 / PixelRatio.getFontScale(), marginTop: 10 }}>{item.DescVendedor}</Text>
-                <Text style={{ color: '#fff', fontSize: 12 / PixelRatio.getFontScale(), marginTop: 10, height: !this.state.soloAutorizado ? 15 : 0  }}>{!this.state.soloAutorizado ? 'Sólo Pedidos Autorizados' : ''}</Text>
+                <Text style={{ color: '#fff', fontSize: 20 / PixelRatio.getFontScale(), marginTop: 5 }}>{item.DescVendedor}</Text>
+                <Text style={{ color: '#fff', fontSize: 12 / PixelRatio.getFontScale(), marginTop: 5, height: !this.state.soloAutorizado ? 20 : 0  }}>{!this.state.soloAutorizado ? 'Sólo Pedidos Autorizados' : ''}</Text>
             </ListItem>
             <Grid>
-                <Col style={{ marginVertical: 20 }}>
+                <Col style={{ marginVertical: 15 }}>
                     <Row style={{ paddingLeft: 10, marginBottom: 10 }}>
                         <Text onPress={() => this.setState({soloAutorizado: !this.state.soloAutorizado}, this._ReGenerarItems)}
                             style={{ fontSize: 12 / PixelRatio.getFontScale() }}

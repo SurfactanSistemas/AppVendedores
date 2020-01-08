@@ -76,7 +76,7 @@ export default class Menu extends React.PureComponent {
               flex: 1,
               color: "#fff",
               textAlign: "center",
-              fontSize: 13 / PixelRatio.getFontScale()
+              fontSize: 12 / PixelRatio.getFontScale()
             }}
           >
             {item.Texto}
