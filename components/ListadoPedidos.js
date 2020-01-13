@@ -1,13 +1,14 @@
 import React from 'react';
-import { View, Dimensions, StyleSheet, TouchableOpacity, PixelRatio, FlatList } from 'react-native';
+import { View, Dimensions, StyleSheet, TouchableHighlight, PixelRatio, FlatList } from 'react-native';
 import MenuHeaderButton from './MenuHeaderButton';
 import HeaderNav from './HeaderNav.js';
-import { Container, Text, Content, List, ListItem, Spinner, Icon, Header, Item, Input, Picker } from 'native-base';
+import { Container, Text, Content, ListItem, Spinner, Header } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
-import DatePicker from 'react-native-datepicker';
+import DatePicker from '@react-native-community/datetimepicker';
 import Config from '../config/config.js';
 import _ from 'lodash';
 import moment from 'moment';
+import { Ionicons } from '@expo/vector-icons';
 
 const LabelEncabezado = ({ texto, customStyles }) => (
     <Text style={[{ color: '#fff', fontSize: 12 / PixelRatio.getFontScale(), fontStyle: 'italic' }, customStyles]}>
@@ -27,8 +28,8 @@ export default class ListadoPedidos extends React.Component {
 
     static navigationOptions = ({ navigation }) => {
         return {
-            headerTitle: <HeaderNav section="Hojas de Ruta" />,
-            headerRight: <MenuHeaderButton navigation={navigation} />
+            headerTitle: () =>  <HeaderNav section="Hojas de Ruta" />,
+            headerRight: () =>  <MenuHeaderButton navigation={navigation} />
         };
     };
 
@@ -46,9 +47,18 @@ export default class ListadoPedidos extends React.Component {
         textFilter: '',
         itemsFiltrados: [],
         primeraVez: true,
-        date: moment().format('DD-MM-YYYY')
+        date: new Date(),
+        show: false
     }
 
+    setDate = (event, date) => {
+        date = date || this.state.date;
+        this.setState({
+          show: Platform.OS === 'ios',
+          date,
+        });
+      }
+    
     async componentDidMount() {
         this.ConsultarAniosPosibles();
         this._ReGenerarItems();
@@ -71,7 +81,9 @@ export default class ListadoPedidos extends React.Component {
 
         this.setState({ refrescando: true, primeraVez: true });
 
-        return Config.Consultar(`Pedidos/${global.idVendedor}/${this.state.date}`, (resp) => {
+        const WDate = moment(this.state.date).format('DD-MM-YYYY');
+
+        return Config.Consultar(`Pedidos/${global.idVendedor}/${WDate}`, (resp) => {
             resp.then(response => response.json())
                 .then(responseJson => {
 
@@ -224,10 +236,9 @@ export default class ListadoPedidos extends React.Component {
         </View>
     )
 
-    handleOnPressDate = d => {
-        if (d.toLocaleString() != this.state.date.toLocaleString()) {
-            this.setState({ date: d }, this._ReGenerarItems)
-        }
+    handleOnPressDate = (e, d) => {
+        d = d ?? this.state.date;
+        if (d.toLocaleString() != this.state.date.toLocaleString()) this.setState({ date: d, show: false }, this._ReGenerarItems);
     }
 
     _KeyExtractor = () => Math.random().toString();
@@ -241,19 +252,21 @@ export default class ListadoPedidos extends React.Component {
                         <Input placeholder="Search" onChangeText={this._handleChangeTextFiltro} value={this.state.textFilter} />
                     </Item> */}
                     <View style={{ flexDirection: 'row', flex: 1, alignItems: 'center', paddingLeft: 20, minWidth: 80 / PixelRatio.getFontScale() }}>
-                        <Text style={{ color: '#fff' }}>Fecha:</Text>
-                        <DatePicker
-                            minDate={`${Math.min(...this.state.Anios.map(a => a.Anio))}-01-01`}
-                            maxDate={moment().format('DD-MM-YYYY')}
-                            onDateChange={this.handleOnPressDate}
-                            //style={{ width: 130 / PixelRatio.getFontScale() }}
-                            customStyles={{
-                                dateText: { color: '#FFF' },
-                                dateInput: { borderWidth: 0 }
-                            }}
-                            date={this.state.date}
+                        <TouchableHighlight onPress={() => this.setState({show: true,})}>
+                            <Row style={{ alignItems: 'center'}}>
+                                <Ionicons name="md-calendar" size={30} color="white" />
+                                <Text style={{ color: '#fff', marginLeft: 15 }}>Fecha:  {moment(this.state.date, 'MM-DD-YYYY').format('DD/MM/YYYY')}</Text>
+                            </Row>
+                        </TouchableHighlight>
+                        {this.state.show && <DatePicker value={this.state.date}
                             mode="date"
-                            format="DD-MM-YYYY" />
+                            is24Hour={true}
+                            display="calendar"
+                            // minimumDate={`${Math.min(...this.state.Anios.map(a => a.Anio))}-01-01`}
+                            maximumDate={new Date()}
+                            locale="es-ES"
+                            onChange={this.handleOnPressDate}
+                            onTouchCancel={(e, d) => this.setState({show: false})} />}
                     </View>
                 </Header>
                 <Content style={{ borderTopColor: '#ccc', borderTopWidth: 1 }}>

@@ -64,8 +64,8 @@ export default class DetallesVentasProductos extends React.PureComponent{
     
     static navigationOptions = ({navigation}) => {
         return {
-            headerTitle: <HeaderNav section="Ventas" />,
-            headerRight: <MenuHeaderButton navigation={navigation} />
+            headerTitle: () =>  <HeaderNav section="Ventas" />,
+            headerRight: () =>  <MenuHeaderButton navigation={navigation} />
         };
     };
 

@@ -1,4 +1,4 @@
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import ListadoMuestras from './components/ListadoMuestras.js';
 import ListadoEstadisticas from './components/ListadoEstadisticas';
 import ListadoPedidos from './components/ListadoPedidos';
@@ -15,8 +15,15 @@ import Login from './components/Login';
 import Menu from './components/Menu';
 
 import './config/globals.js';
+import { createAppContainer } from 'react-navigation';
 
-export default createStackNavigator({
+import { YellowBox } from 'react-native'
+
+YellowBox.ignoreWarnings([
+  'VirtualizedLists should never be nested', // TODO: Remove when fixed
+])
+
+const stack = createStackNavigator({
   Home: Login,
   Listado: ListadoMuestras,
   Estadisticas: ListadoEstadisticas,
@@ -32,3 +39,5 @@ export default createStackNavigator({
   Observaciones: Observacion,
   Menu: Menu
 });
+
+export default createAppContainer(stack);

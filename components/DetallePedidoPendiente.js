@@ -26,8 +26,8 @@ export default class DetallePedidoPendiente extends React.Component {
 
     static navigationOptions = ({ navigation }) => {
         return {
-            headerTitle: <HeaderNav section="Detalle" />,
-            headerRight: <MenuHeaderButton navigation={navigation} />
+            headerTitle: () =>  <HeaderNav section="Detalle" />,
+            headerRight: () =>  <MenuHeaderButton navigation={navigation} />
         };
     };
 

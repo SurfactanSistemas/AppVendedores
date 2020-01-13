@@ -10,8 +10,8 @@ export default class ListadoConsultaPedidos extends React.Component{
     
     static navigationOptions = ({navigation}) => {
         return {
-            headerTitle: <HeaderNav section="Consulta de Pedidos"/>,
-            headerRight: <MenuHeaderButton navigation={navigation} />
+            headerTitle: () =>  <HeaderNav section="Consulta de Pedidos"/>,
+            headerRight: () =>  <MenuHeaderButton navigation={navigation} />
         };
     };
 

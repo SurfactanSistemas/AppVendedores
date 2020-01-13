@@ -16,10 +16,10 @@ export default class HeaderNav extends React.PureComponent {
     render(){
         return (
             <Grid style={[styles.header, { flex: 1 }]}>
-                <Col style={{ alignItems: 'flex-end', marginRight: 10 }}>
+                <Col style={{ alignItems: 'flex-end', marginHorizontal: 15, marginVertical: 4 }}>
                     <Image style = {{height: 50, width: 75}} source={require('../assets/img/surfaclogo.png')} />
                 </Col>
-                <Col style={{ alignItems: 'flex-start', marginLeft: 10 }}>
+                <Col style={{ alignItems: 'flex-start', marginHorizontal: 10 }}>
                     <Row>
                         <Text style={styles.titulo}>
                             SURFACTAN S.A.
@@ -61,8 +61,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flex: 1,
-        minHeight: responsiveHeight(5),
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc'
+        minHeight: responsiveHeight(3),
+        // borderBottomWidth: 1,
+        // borderBottomColor: '#ccc'
     }
 });

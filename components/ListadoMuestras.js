@@ -11,8 +11,8 @@ export default class ListadoMuestras extends React.Component{
     
     static navigationOptions = ({navigation}) => {
         return {
-            headerTitle: <HeaderNav section="Muestras"/>,
-            headerRight: <MenuHeaderButton navigation={navigation} />
+            headerTitle: () =>  <HeaderNav section="Muestras"/>,
+            headerRight: () =>  <MenuHeaderButton navigation={navigation} />
         };
     };
 
@@ -35,9 +35,9 @@ export default class ListadoMuestras extends React.Component{
     async componentDidMount(){
         //this.setState({idVendedor: this.props.navigation.getParam('idVendedor', -1)});
         // Obtenemos los años para el Picker.
-        this.ConsultarAniosPosibles();
-        this._ReGenerarItems();
         this.setState({heightDevice: Dimensions.get('screen').height});
+        await this.ConsultarAniosPosibles();
+        await this._ReGenerarItems();
     }
 
     ConsultarAniosPosibles(){
@@ -93,7 +93,7 @@ export default class ListadoMuestras extends React.Component{
     _KeyExtractor = (item, index) => index.toString();
 
     _handlePickAnio = (val) => {
-        this.setState({AnioConsulta: val, textFilter: '', primeraVez: true}, this._ReGenerarItems);
+        if (val != this.state.AnioConsulta) this.setState({AnioConsulta: val, textFilter: '', primeraVez: true}, this._ReGenerarItems);
     }
 
     _handleChangeTextFiltro = (val) => {

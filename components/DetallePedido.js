@@ -27,8 +27,8 @@ export default class DetallePedido extends React.Component {
 
     static navigationOptions = ({ navigation }) => {
         return {
-            headerTitle: <HeaderNav section="Pedido" />,
-            headerRight: <MenuHeaderButton navigation={navigation} />
+            headerTitle: () =>  <HeaderNav section="Pedido" />,
+            headerRight: () =>  <MenuHeaderButton navigation={navigation} />
         };
     };
 

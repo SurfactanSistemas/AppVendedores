@@ -24,8 +24,8 @@ export default class ListadoPedidosPendientes extends React.Component {
 
     static navigationOptions = ({ navigation }) => {
         return {
-            headerTitle: <HeaderNav section="Pendientes" />,
-            headerRight: <MenuHeaderButton navigation={navigation} />
+            headerTitle: () =>  <HeaderNav section="Pendientes" />,
+            headerRight: () =>  <MenuHeaderButton navigation={navigation} />
         };
     };
 
@@ -161,7 +161,7 @@ export default class ListadoPedidosPendientes extends React.Component {
                                 <LabelEncabezado texto={`( ${Cliente} )  ${Razon}`} customStyles={{ fontSize: 13  / PixelRatio.getFontScale(), color: '#fff' }} />
                             } style={{ backgroundColor: Config.bgColorSecundario, paddingLeft: 15 }} />
                     </Row>
-                    <Row style={{ borderBottomColor: '#aaa', borderBottomWidth: 0.5, marginBottom: 5, paddingVertical: 10, backgroundColor: '#ccc' }}>
+                    <Row style={{ borderBottomColor: '#aaa', borderBottomWidth: 0.5, paddingVertical: 10, backgroundColor: '#ccc' }}>
                         <Col size={3} style={{ justifyContent: 'center', alignItems: 'center' }}>
                             <Text style={{ fontSize: 10 / PixelRatio.getFontScale() }}>
                                 Pedido
@@ -195,8 +195,8 @@ export default class ListadoPedidosPendientes extends React.Component {
     RenderVendedor = (item) => (
         <View key={item.Vendedor}>
             <ListItem itemHeader key={item.Vendedor} style={{ backgroundColor: Config.bgColorSecundario, justifyContent: 'center', alignItems: 'center', borderBottomColor: '#ccc', borderBottomWidth: 0.5, flexDirection: 'column' }}>
-                <Text style={{ color: '#fff', fontSize: 20 / PixelRatio.getFontScale(), marginTop: 5 }}>{item.DescVendedor}</Text>
-                <Text style={{ color: '#fff', fontSize: 12 / PixelRatio.getFontScale(), marginTop: 5, height: !this.state.soloAutorizado ? 20 : 0  }}>{!this.state.soloAutorizado ? 'Sólo Pedidos Autorizados' : ''}</Text>
+                <Text style={{ color: '#fff', fontSize: 30 / PixelRatio.getFontScale(), marginTop: 2 }}>{item.DescVendedor.toString().toUpperCase()}</Text>
+                <Text style={{ color: '#fff', fontSize: 12 / PixelRatio.getFontScale(), marginTop: 2, height: !this.state.soloAutorizado ? 20 : 0  }}>{!this.state.soloAutorizado ? 'Sólo Pedidos Autorizados' : ''}</Text>
             </ListItem>
             <Grid>
                 <Col style={{ marginVertical: 15 }}>

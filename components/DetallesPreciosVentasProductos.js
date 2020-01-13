@@ -11,8 +11,8 @@ export default class DetallesPreciosVentasProductos extends React.PureComponent{
     
     static navigationOptions = ({navigation}) => {
         return {
-            headerTitle: <HeaderNav section="Ventas" />,
-            headerRight: <MenuHeaderButton navigation={navigation} />
+            headerTitle: () =>  <HeaderNav section="Ventas" />,
+            headerRight: () =>  <MenuHeaderButton navigation={navigation} />
         };
     };
 
@@ -86,13 +86,13 @@ export default class DetallesPreciosVentasProductos extends React.PureComponent{
         return (
             <Container>
                 <Header style={{backgroundColor: Config.bgColorSecundario}}>
-                    <Text style={{ fontSize: 15 / PixelRatio.getFontScale(), color: '#fff', fontWeight: 'bold' }}>
+                    <Text style={{ fontSize: 15 / PixelRatio.getFontScale(), color: '#fff', fontWeight: 'bold', paddingTop: 15 }}>
                         DETALLES
                     </Text>
                 </Header>
                 <Content style={styles.container}>
                     <Grid>
-                        <Row style={[styles.row, {marginTop: 30}]}>
+                        <Row style={[styles.row, {marginTop: 10}]}>
                             <Col size={2} style={styles.bloqueAzul} >
                                 <Text style={styles.textoBloqueazul}>Código</Text>
                             </Col>
@@ -102,7 +102,7 @@ export default class DetallesPreciosVentasProductos extends React.PureComponent{
                             <Col size={2} style={styles.bloqueAzul} >
                                 <Text style={styles.textoBloqueazul}>Producto</Text>
                             </Col>
-                            <Col size={5} style={styles.bloqueBlanco}>
+                            <Col size={5} style={{...styles.bloqueBlanco, paddingLeft: 5}}>
                                 <Text style={styles.textoBloqueBlanco}>{Producto.Datos[0].DesTerminado}</Text>
                             </Col>
                         </Row>
@@ -151,7 +151,7 @@ export default class DetallesPreciosVentasProductos extends React.PureComponent{
                             </Row>
                         ))}
 
-                        <Row style={[styles.row, {marginTop: 20, marginBottom: 30}]}>
+                        <Row style={[styles.row, {marginTop: 10, marginBottom: 30}]}>
                             <Col size={2} style={styles.bloqueAzul} >
                                 <Text style={styles.textoBloqueazul}>Total Kilos</Text>
                             </Col>

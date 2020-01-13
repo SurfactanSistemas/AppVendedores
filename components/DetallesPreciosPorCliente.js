@@ -11,8 +11,8 @@ export default class DetallesPreciosPorCliente extends React.PureComponent{
     
     static navigationOptions = ({navigation}) => {
         return {
-            headerTitle: <HeaderNav />,
-            headerRight: <MenuHeaderButton navigation={navigation} />
+            headerTitle: () =>  <HeaderNav />,
+            headerRight: () =>  <MenuHeaderButton navigation={navigation} />
         };
     };
 

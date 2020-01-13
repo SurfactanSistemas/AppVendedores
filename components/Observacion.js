@@ -10,7 +10,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 export default class Observacion extends React.PureComponent {
 
     static navigationOptions = {
-        headerTitle: <HeaderNav />,
+        headerTitle: () =>  <HeaderNav />,
     };
 
     constructor(props){
@@ -92,7 +92,7 @@ export default class Observacion extends React.PureComponent {
         if (this.state.loading) return (<View><Spinner/></View>);
 
         return (
-            <ScrollView>
+            // <ScrollView>
                 <Container style={{flex: 1, backgroundColor: '#eee', paddingHorizontal: responsiveWidth(1), minHeight: 300}}>
                     <Grid style={{ minHeight: 400 }} >
                         <Col>
@@ -151,7 +151,7 @@ export default class Observacion extends React.PureComponent {
                         </Col>
                     </Grid>
                 </Container>
-            </ScrollView>
+            // </ScrollView>
         )
     }
 }

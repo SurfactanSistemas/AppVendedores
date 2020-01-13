@@ -9,7 +9,7 @@ import { responsiveWidth } from 'react-native-responsive-dimensions';
 export default class DetallesPedido extends React.PureComponent{
 	
 	static navigationOptions = {
-		headerTitle: <HeaderNav section="Detalles" />,
+		headerTitle: () =>  <HeaderNav section="Detalles" />,
 	};
 
 	state = {

@@ -8,9 +8,10 @@ import * as Font from 'expo-font';
 
 const MSG_CLAVE_ERRONEA = 'La clave indicada no es una cláve válida. Vuela a intentar.';
 
-export default class DetallesPedido extends React.PureComponent {
+export default class Login extends React.PureComponent {
 
     static navigationOptions = {
+        title: '',
         headerStyle: {
             backgroundColor: Config.bgColor,
         },
@@ -47,7 +48,7 @@ export default class DetallesPedido extends React.PureComponent {
         this.setState({ tamanioWidth: value - 50 });
     }
 
-    async componentWillMount() {
+    async UNSAFE_componentWillMount() {
         
         global.idVendedor = -1;
 

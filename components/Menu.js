@@ -11,7 +11,7 @@ import {
 
 export default class Menu extends React.PureComponent {
   static navigationOptions = {
-    headerTitle: <HeaderNav section="MENÚ" />
+    headerTitle: () => <HeaderNav section="MENÚ" />
   };
 
   constructor(props) {
@@ -61,7 +61,8 @@ export default class Menu extends React.PureComponent {
         style={{
           justifyContent: "center",
           alignItems: "center",
-          paddingHorizontal: 15
+          paddingHorizontal: 15,
+          marginBottom: 10
         }}
       >
         <Button
@@ -100,10 +101,10 @@ export default class Menu extends React.PureComponent {
       );
 
     return (
-      <ScrollView
-        style={{ backgroundColor: Config.bgColorSecundario }}
-      >
-        <Grid style={{ marginTop: 20, justifyContent: 'center' }}>
+      // <ScrollView
+      //   style={{ }}
+      // >
+        <Grid style={{ justifyContent: 'center',backgroundColor: Config.bgColorSecundario  }}>
             <Col style={{ maxWidth: responsiveWidth(90) }}>
                 {this.Items.map((item, index) => {
                     return this.GenerarItem(item, index);
@@ -111,7 +112,7 @@ export default class Menu extends React.PureComponent {
                 <Row size={12 - this.Items.length} />
             </Col>
         </Grid>
-      </ScrollView>
+      // </ScrollView>
     );
   }
 }

@@ -95,11 +95,11 @@ const RenderVendedor = ({ item, navigation, AnioConsulta }) => {
         <Text
           style={{
             color: "#fff",
-            fontSize: 15 / PixelRatio.getFontScale(),
+            fontSize: 25 / PixelRatio.getFontScale(),
             marginTop: 10
           }}
         >
-          {item.DesVendedor}
+          {item.DesVendedor.toString().toUpperCase()}
         </Text>
       </ListItem>
       {/* <List
@@ -124,8 +124,8 @@ const RenderVendedor = ({ item, navigation, AnioConsulta }) => {
 export default class ListadoEstadisticas extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: <HeaderNav section="Ventas" />,
-      headerRight: <MenuHeaderButton navigation={navigation} />
+      headerTitle: () =>  <HeaderNav section="Ventas" />,
+      headerRight: () =>  <MenuHeaderButton navigation={navigation} />
     };
   };
 
@@ -195,6 +195,8 @@ export default class ListadoEstadisticas extends React.Component {
   _KeyExtractor = () => Math.random().toString();
 
   _handlePickAnio(val) {
+    if (val == this.state.AnioConsulta) return;
+
     this.setState(
       { AnioConsulta: val, textFilter: "", primeraVez: true },
       this._ReGenerarItems

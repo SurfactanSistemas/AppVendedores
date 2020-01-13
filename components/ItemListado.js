@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, View, Text, StyleSheet, FlatList, Alert, TouchableOpacity, PixelRatio } from 'react-native';
-import { createStackNavigator} from 'react-navigation';
+import { createStackNavigator} from 'react-navigation-stack';
 
 export default class ItemListado extends React.Component {
     render(){

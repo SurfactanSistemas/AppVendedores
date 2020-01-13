@@ -12,8 +12,8 @@ Component{
     
     static navigationOptions = ({navigation}) => {
         return {
-            headerTitle: <HeaderNav section="Precios por Cliente" />,
-            headerRight: <MenuHeaderButton navigation={navigation} />
+            headerTitle: () =>  <HeaderNav section="Precios por Cliente" />,
+            headerRight: () =>  <MenuHeaderButton navigation={navigation} />
         };
     };
 
