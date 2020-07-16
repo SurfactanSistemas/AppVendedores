@@ -23,7 +23,7 @@
     "@react-native-community/datetimepicker": "2.1.0",
     "@react-native-community/masked-view": "^0.1.5",
     "expo": "^36.0.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "moment": "^2.22.2",
     "native-base": "^2.7.0",
     "react": "16.9.0",
