@@ -15,11 +15,11 @@ export default class HeaderNav extends React.PureComponent {
     
     render(){
         return (
-            <Grid style={[styles.header, { flex: 1 }]}>
-                <Col style={{ alignItems: 'flex-end', marginHorizontal: 15, marginVertical: 4 }}>
+            <Grid style={[styles.header, { }]}>
+                {/* <Col style={{ alignItems: 'flex-end', marginHorizontal: 15, marginVertical: 4 }}>
                     <Image style = {{height: 50, width: 75}} source={require('../assets/img/surfaclogo.png')} />
-                </Col>
-                <Col style={{ alignItems: 'flex-start', marginHorizontal: 10 }}>
+                </Col> */}
+                <Col style={{ alignItems: 'center', justifyContent: 'center', paddingHorizontal: 55, paddingVertical: 8  }}>
                     <Row>
                         <Text style={styles.titulo}>
                             SURFACTAN S.A.
@@ -46,22 +46,26 @@ const styles = StyleSheet.create({
         fontSize: 17  / PixelRatio.getFontScale(),
         color: '#FFF',
         flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     tituloSecundario: {
         // fontWeight: 'bold',
         fontSize: 13 / PixelRatio.getFontScale(),
         color: '#FFF',
         flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
         // textAlign: 'center',
-        marginLeft: 10
+        // marginLeft: 10
     },
     header: {
-        backgroundColor: '#133c74',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-        minHeight: responsiveHeight(3),
+            backgroundColor: '#133c74',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            // flex: 1,
+            // minHeight: responsiveHeight(3),
         // borderBottomWidth: 1,
         // borderBottomColor: '#ccc'
     }

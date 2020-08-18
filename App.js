@@ -4,11 +4,13 @@ import ListadoEstadisticas from './components/ListadoEstadisticas';
 import ListadoPedidos from './components/ListadoPedidos';
 import ListadoPedidosPendientes from './components/ListadoPedidosPendientes';
 import ListadoPrecios from './components/ListadoPrecios';
+import ListadoClientesCtaCte from './components/ListadoClientesCtaCte';
 import DetallesPedidoMuestras from './components/DetallesPedidoMuestras.js';
 import DetallesPedido from './components/DetallePedido.js';
 import DetallesPedidoPendiente from './components/DetallePedidoPendiente.js';
 import DetallesVentasProductos from './components/DetallesVentasProductos';
 import DetallesPreciosPorCliente from './components/DetallesPreciosPorCliente';
+import DetallesCtaCteCliente from './components/DetallesCtaCteCliente';
 import DetallesPreciosVentasProductos from './components/DetallesPreciosVentasProductos';
 import Observacion from './components/Observacion';
 import Login from './components/Login';
@@ -26,6 +28,7 @@ YellowBox.ignoreWarnings([
 const stack = createStackNavigator({
   Home: Login,
   Listado: ListadoMuestras,
+  ListadoClientesCtaCte: ListadoClientesCtaCte,
   Estadisticas: ListadoEstadisticas,
   Precios: ListadoPrecios,
   Pedidos: ListadoPedidos,
@@ -36,6 +39,7 @@ const stack = createStackNavigator({
   DetallesVentasProductos: DetallesVentasProductos,
   DetallesPreciosVentasProductos: DetallesPreciosVentasProductos,
   DetallesPreciosPorCliente: DetallesPreciosPorCliente,
+  DetallesCtaCteCliente: DetallesCtaCteCliente,
   Observaciones: Observacion,
   Menu: Menu
 });

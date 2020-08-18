@@ -25,11 +25,15 @@ export default class Menu extends React.PureComponent {
 
     this.Items = [
       {
-        Texto: "Consulta de Pedidos Pendientes",
+        Texto: "Cuentas Corrientes",
+        Ruta: "ListadoClientesCtaCte"
+      },
+      {
+        Texto: "Pedidos Pendientes",
         Ruta: "PedidosPendientes"
       },
       {
-        Texto: "Consulta de Hojas de Ruta",
+        Texto: "Hojas de Ruta",
         Ruta: "Pedidos"
       },
       {

@@ -238,7 +238,7 @@ export default class ListadoPedidos extends React.Component {
 
     handleOnPressDate = (e, d) => {
         d = d ?? this.state.date;
-        if (d.toLocaleString() != this.state.date.toLocaleString()) this.setState({ date: d, show: false }, this._ReGenerarItems);
+        if (d.toLocaleString() != this.state.date.toLocaleString()) this.setState({ date: d, show: Platform.OS === 'ios' }, this._ReGenerarItems);
     }
 
     _KeyExtractor = () => Math.random().toString();
@@ -260,6 +260,7 @@ export default class ListadoPedidos extends React.Component {
                         </TouchableHighlight>
                         {this.state.show && <DatePicker value={this.state.date}
                             mode="date"
+                            style={{width:'100%'}}
                             is24Hour={true}
                             display="calendar"
                             // minimumDate={`${Math.min(...this.state.Anios.map(a => a.Anio))}-01-01`}
