@@ -3,7 +3,8 @@ const bgColorSecundario = '#15427F';
 const bgColorTerciario = '#1a55a7';
 
 //const BA SE_URL = "https://08bb486d.ngrok.io/Api/"; // Desarrollo
-const BASE_URL = "http://201.231.98.97/Api/"; // Produccion
+// const BASE_URL = "http://201.231.98.97/Api/"; // Produccion
+const BASE_URL = "http://200.73.166.202/Api/"; // Produccion
 const BASE_URLII = "http://24.232.10.16/Api/"; // Produccion
 const BASE_URLIII = "http://181.28.207.136/Api/"; // Produccion
 let BASE_FINAL = "";
