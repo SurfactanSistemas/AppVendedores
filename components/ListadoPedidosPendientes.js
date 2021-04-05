@@ -74,10 +74,12 @@ export default class ListadoPedidosPendientes extends React.Component {
         return Config.Consultar(`Pedidos/Pendientes/${global.idVendedor}/${_SoloAutorizados}`, (resp) => {
             resp.then(response => response.json())
                 .then(responseJson => {
-
+                    
                     let _datos = [];
 
                     const { error, resultados } = responseJson;
+
+                    // console.log(resultados)
 
                     if (resultados.length > 0) {
                         _datos = resultados;
@@ -122,36 +124,38 @@ export default class ListadoPedidosPendientes extends React.Component {
 
     handleOnPressDetalles = (Pedido) => this.props.navigation.navigate('DetallesPedidoPendiente', { Pedido: Pedido });
 
-    RenderPedido = ({item}) => {
-        let { Pedido, Fecha, FechaEntrega, CantProd, Autorizado } = item;
+    RenderPedido = ({ Pedido, Fecha, FechaEntrega, CantProd, Autorizado }) => {
+        let estiloEncabezado = {backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'};
+        let estiloLabelEncabezado = { fontSize: 10  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' };
+
         return (
             <Row key={Pedido} onPress={() => this.handleOnPressDetalles(Pedido)} style={{ alignItems: 'center', borderBottomColor: '#aaa', borderBottomWidth: 0.5 }} >
                 <BloqueEncabezado
                     size={3}
                     content={
-                        <LabelEncabezado texto={Pedido} customStyles={{ fontSize: 10  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
-                    } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
+                        <LabelEncabezado texto={Pedido} customStyles={estiloLabelEncabezado} />
+                    } style={estiloEncabezado} />
                 <BloqueEncabezado
                     size={3}
                     content={
-                        <LabelEncabezado texto={Fecha} customStyles={{ fontSize: 10  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
-                    } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
+                        <LabelEncabezado texto={Fecha} customStyles={estiloLabelEncabezado} />
+                    } style={estiloEncabezado} />
                 <BloqueEncabezado
                     size={3}
                     content={
-                        <LabelEncabezado texto={FechaEntrega} customStyles={{ fontSize: 10  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
-                    } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
+                        <LabelEncabezado texto={FechaEntrega} customStyles={estiloLabelEncabezado} />
+                    } style={estiloEncabezado} />
                 <BloqueEncabezado
                     size={3}
                     content={
-                        <LabelEncabezado texto={CantProd} customStyles={{ fontSize: 10  / PixelRatio.getFontScale(), color: Autorizado === 'N' ? '#fff' : '#000' }} />
-                    } style={{backgroundColor: Autorizado === 'N' ? 'red' : '#fff', justifyContent: 'center', alignItems: 'center'}} />
+                        <LabelEncabezado texto={CantProd} customStyles={estiloLabelEncabezado} />
+                    } style={estiloEncabezado} />
             </Row>
         );
     }
 
-    RenderCliente = ({item}) => {
-        let { Cliente, Razon, Pedidos } = item;
+    RenderCliente = ({ Cliente, Razon, Pedidos }) => {
+        
         return (
             <Row key={Cliente} style={{ alignItems: 'center', borderBottomColor: '#ccc', borderBottomWidth: 0.5, marginBottom: 10 }} >
                 <Col>
@@ -183,10 +187,7 @@ export default class ListadoPedidosPendientes extends React.Component {
                             </Text>
                         </Col>
                     </Row>
-                    <FlatList
-                        data={Pedidos}
-                        renderItem={this.RenderPedido}
-                        keyExtractor={this._KeyExtractor}/>
+                    { Pedidos.map(this.RenderPedido) }
                 </Col>
             </Row>
         );
@@ -212,10 +213,11 @@ export default class ListadoPedidosPendientes extends React.Component {
                             onPress={() => this.setState({soloAutorizado: !this.state.soloAutorizado}, this._ReGenerarItems)}
                         />
                     </Row>
-                        <FlatList
+                    { item.Datos.map(this.RenderCliente) }
+                        {/* <FlatList
                             data={item.Datos}
                             renderItem={this.RenderCliente}
-                            keyExtractor={this._KeyExtractor}/>
+                            keyExtractor={this._KeyExtractor}/> */}
                 </Col>
             </Grid>
         </View>
@@ -240,11 +242,12 @@ export default class ListadoPedidosPendientes extends React.Component {
                         //     extraData={this.state}
                         //     renderItem={this.RenderVendedor}
                         //     keyExtractor={this._KeyExtractor}/>
-                        <List
-                            dataArray={this.state.itemsFiltrados}
-                            renderRow={this.RenderVendedor}
-                            keyExtractor={this._KeyExtractor}
-                        />
+                        this.state.itemsFiltrados.map(this.RenderVendedor)
+                        // <List
+                        //     dataArray={this.state.itemsFiltrados}
+                        //     renderRow={this.RenderVendedor}
+                        //     keyExtractor={this._KeyExtractor}
+                        // />
                     }
                 </Content>
             </Container>
