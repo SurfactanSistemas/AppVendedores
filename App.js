@@ -19,11 +19,11 @@ import Menu from './components/Menu';
 import './config/globals.js';
 import { createAppContainer } from 'react-navigation';
 
-import { YellowBox } from 'react-native'
+import { LogBox } from 'react-native'
 
-YellowBox.ignoreWarnings([
+LogBox.ignoreLogs([
   'VirtualizedLists should never be nested', // TODO: Remove when fixed
-])
+  ]);
 
 const stack = createStackNavigator({
   Home: Login,

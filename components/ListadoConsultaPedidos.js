@@ -158,13 +158,13 @@ export default class ListadoConsultaPedidos extends React.Component{
                         <Icon name="ios-search" />
                         <Input placeholder="Search" onChangeText={this._handleChangeTextFiltro} value={this.state.textFilter}/>
                     </Item>
-                    <View style={{flexDirection: 'row', flex: 1, alignItems: 'center', paddingLeft: 20, minWidth: 80}}>
+                    <View style={{flexDirection: 'row', flex: 1, alignItems: 'center', paddingLeft: 20, minWidth: 100}}>
                         <Text style={{color: '#fff'}}>Periodo:</Text>
                         <Picker
                         iosHeader="Select one"
                         mode="dropdown"
                         selectedValue={this.state.AnioConsulta}
-                        style={{color: '#fff'}}
+                        style={{color: '#fff', width: 100, minHeight: 50, fontSize: 18 / PixelRatio.getFontScale() }}
                         // onValueChange={this.onValueChange.bind(this)}
                         onValueChange={this._handlePickAnio}
                         >

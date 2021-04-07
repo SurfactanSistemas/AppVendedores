@@ -169,13 +169,14 @@ export default class ListadoMuestras extends React.Component{
                             </Item>
                         </Col>
                         <Col>
-                            <View style={{flexDirection: 'row', flex: 1, alignItems: 'center', paddingLeft: 20, minWidth: 80}}>
-                                <Text style={{color: '#fff', fontSize: 12 / PixelRatio.getFontScale() }}>Periodo:</Text>
+                            <View style={{flexDirection: 'row', flex: 1, alignItems: 'center', paddingLeft: 20, minWidth: 100}}>
+                                <Text style={{color: '#fff', fontSize: 18 / PixelRatio.getFontScale() }}>Periodo:</Text>
                                 <Picker
-                                iosHeader="Select one"
+                                iosHeader="SELECCIONE"
                                 mode="dropdown"
                                 selectedValue={this.state.AnioConsulta}
-                                style={{color: '#fff' }}
+                                // style={{color: '#fff' }}
+                                style={{color: '#fff', width: 100, minHeight: 50, fontSize: 18 / PixelRatio.getFontScale() }}
                                 // onValueChange={this.onValueChange.bind(this)}
                                 onValueChange={this._handlePickAnio}
                                 >

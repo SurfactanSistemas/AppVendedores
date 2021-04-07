@@ -260,14 +260,15 @@ export default class ListadoEstadisticas extends React.Component {
               width: responsiveWidth(40)
             }}
           >
-            <Text style={{ color: "#fff", fontSize: 12 / PixelRatio.getFontScale() }}>
+            <Text style={{ color: "#fff", fontSize: 18 / PixelRatio.getFontScale() }}>
               Periodo:
             </Text>
             <Picker
               iosHeader="Select one"
               mode="dropdown"
               selectedValue={this.state.AnioConsulta}
-              style={{ color: "#fff" }}
+              // style={{ color: "#fff" }}
+              style={{color: '#fff', width: 100, minHeight: 50, fontSize: 18 / PixelRatio.getFontScale() }}
               // onValueChange={this.onValueChange.bind(this)}
               onValueChange={val => this._handlePickAnio(val)}
             >

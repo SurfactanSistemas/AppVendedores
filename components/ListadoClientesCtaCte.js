@@ -91,9 +91,10 @@ export default class ListadoClientesCtaCte extends React.Component{
             _itemsFiltrados = this.state.datos;
         }else{
             const regex1 = new RegExp(val.toUpperCase());
+
             _.forEach(this.state.datos, (vendedor) => {
                 let filtrados = _.filter(vendedor.Datos, (Cliente) => {
-                    return regex1.test(Cliente.DesCliente.toUpperCase()) || regex1.test(Cliente.Cliente.toUpperCase()) ;
+                    return regex1.test(Cliente.Razon.toUpperCase()) || regex1.test(Cliente.Cliente.toUpperCase()) ;
                 });
                 if (filtrados.length > 0)
                     _itemsFiltrados.push({Vendedor: vendedor.Vendedor, DesVendedor: vendedor.DesVendedor, Datos: filtrados});
@@ -166,13 +167,13 @@ export default class ListadoClientesCtaCte extends React.Component{
                             </Item>
                         </Col>
                         <Col>
-                            <View style={{flexDirection: 'row', flex: 1, alignItems: 'center', paddingLeft: 20, minWidth: 80}}>
-                                <Text style={{color: '#fff', fontSize: 12 / PixelRatio.getFontScale() }}>Periodo:</Text>
+                            <View style={{flexDirection: 'row', flex: 1, alignItems: 'center', paddingLeft: 20, minWidth: 100}}>
+                                <Text style={{color: '#fff', fontSize: 18 / PixelRatio.getFontScale() }}>MONEDA:</Text>
                                 <Picker
-                                    iosHeader="Select one"
+                                    iosHeader="SELECCIONE"
                                     mode="dropdown"
                                     selectedValue={this.state.moneda}
-                                    style={{color: '#fff', width: 20 }}
+                                    style={{color: '#fff', width: 100, minHeight: 50, fontSize: 18 / PixelRatio.getFontScale() }}
                                     // onValueChange={this.onValueChange.bind(this)}
                                     onValueChange={(e) => this.setState({moneda: e})}
                                 >
